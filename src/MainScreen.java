@@ -15,7 +15,10 @@ public class MainScreen extends JFrame implements ActionListener,WindowListener,
 {
     private BufferedImage titlePage;
     private JButton startBtn = new JButton ("Start");
-    private JButton instructionsBtn = new JButton ("
+    private JButton instructionsBtn = new JButton ("Instructions");
+    private JButton quitBtn = new JButton ("Quit");
+    
+    //Need to make game scren window
     
 }
 
