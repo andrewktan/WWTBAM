@@ -14,9 +14,19 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     private JButton twoBtn = new JButton ("B");
     private JButton threeBtn = new JButton ("C");
     private JButton fourBtn = new JButton ("D");
-    
+
     //Visual for the question box
     private BufferedImage questionBox;
+
+    //Player
+    private String player;
+
+
+
+    public Gameplay ()
+    {
     
-    
+       
+    }
 }
+
