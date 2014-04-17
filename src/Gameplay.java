@@ -9,24 +9,60 @@ import java.awt.event.WindowListener;
 
 public class Gameplay extends JFrame implements ActionListener, WindowListener
 {
-    //Four main choices buttons
-    private JButton oneBtn = new JButton ("A");
-    private JButton twoBtn = new JButton ("B");
-    private JButton threeBtn = new JButton ("C");
-    private JButton fourBtn = new JButton ("D");
+    //Four main choices buttons    
+    private JButton[] choiceList = new {new JButton ("A"), new JButton ("B"), new JButton ("C"), new JButton ("D")};
 
     //Visual for the question box
     private BufferedImage questionBox;
 
     //Player
     private String player;
-
+    
+    //Score
+    private int score;
 
 
     public Gameplay ()
     {
-    
-       
+	
+
+
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowDeactivated (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowDeiconified (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowIconified (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowOpened (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowClosed (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowActivated (WindowEvent e)
+    {
     }
 }
 
