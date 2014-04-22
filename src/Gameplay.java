@@ -20,6 +20,11 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     
     //Score
     private int score;
+    
+    //Menu
+    private JMenuBar mainMENU = new JMenuBar ();
+    private JMenu InstructionsMENU = new JMenu("Information");
+    private JMenuItem newMENU = new JMenuItem("New Game");
 
 
     public Gameplay ()
