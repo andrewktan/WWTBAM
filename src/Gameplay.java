@@ -9,8 +9,21 @@ import java.awt.event.WindowListener;
 
 public class Gameplay extends JFrame implements ActionListener, WindowListener
 {
+    // For ActionListener interface
+    public void actionPerformed (ActionEvent e)
+    {
+    }
+
+    // For WindowListener interface
+    public void windowClosing (WindowEvent e)
+    {
+    }
+
     //Four main choices buttons    
-    private JButton[] choiceList = new {new JButton ("A"), new JButton ("B"), new JButton ("C"), new JButton ("D")};
+    private JButton[] choiceList = {new JButton ("A"),
+            new JButton ("B"),
+            new JButton ("C"),
+            new JButton ("D")};
 
     //Visual for the question box
     private BufferedImage questionBox;
