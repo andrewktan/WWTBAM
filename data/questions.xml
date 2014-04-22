@@ -1,0 +1,16 @@
+<questions>
+    <question>
+        <prompt>An astronomial unit, or AU, is the mean distance between which two bodies?</prompt>
+        <answer>Earth and Moon</answer>
+        <answer>Sun and Jupiter</answer>
+        <answer correct="true">Sun and Earth</answer>
+        <answer>Sun and Alpha Centauri</answer>
+    </question>
+    <question>
+        <prompt>In the periodic table, what does W stand for?</prompt>
+        <answer>Water</answer>
+        <answer>Antimony</answer>
+        <answer correct="true">Tungsten</answer>
+        <answer>Iron</answer>
+    </question>
+</questions>

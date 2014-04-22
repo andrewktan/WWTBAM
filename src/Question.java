@@ -45,6 +45,14 @@ public class Question {
     }
 
     /**
+     *
+     * @return
+     */
+    public int getCorrect() {
+        return correct;
+    }
+
+    /**
      * returns true if correct answer is given
      * @param x answer
      * @return if correct
