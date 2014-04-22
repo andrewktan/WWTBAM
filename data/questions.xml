@@ -1,4 +1,5 @@
 <questions>
+    <!-- SCIENCE -->
     <question subject="science" difficulty="3">
         <prompt>An astronomial unit, or AU, is the mean distance between which two bodies?</prompt>
         <answer>Earth and Moon</answer>
@@ -13,6 +14,7 @@
         <answer correct="true">Tungsten</answer>
         <answer>Iron</answer>
     </question>
+    <!-- TV and MOVIES -->
     <question subject="tv" difficulty="5">
         <prompt>Who is the host of current Cosmos series?</prompt>
         <answer>Carl Sagan</answer>
@@ -20,6 +22,7 @@
         <answer>Bill Nye</answer>
         <answer>Sean Connery</answer>
     </question>
+    <!-- HISTORY -->
     <question subject="history" difficulty="8">
         <prompt>During which year did the American revolutionary war start?</prompt>
         <answer correct="true">1775</answer>
@@ -27,4 +30,6 @@
         <answer>1812</answer>
         <answer>1784</answer>
     </question>
+    <!-- VIDEO GAMES -->
+    <!-- COMPUTERS -->
 </questions>
