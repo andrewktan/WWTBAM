@@ -1,16 +1,30 @@
 <questions>
-    <question>
+    <question subject="science" difficulty="3">
         <prompt>An astronomial unit, or AU, is the mean distance between which two bodies?</prompt>
         <answer>Earth and Moon</answer>
         <answer>Sun and Jupiter</answer>
         <answer correct="true">Sun and Earth</answer>
         <answer>Sun and Alpha Centauri</answer>
     </question>
-    <question>
+    <question subject="science" difficulty="3">
         <prompt>In the periodic table, what does W stand for?</prompt>
         <answer>Water</answer>
         <answer>Antimony</answer>
         <answer correct="true">Tungsten</answer>
         <answer>Iron</answer>
+    </question>
+    <question subject="tv" difficulty="5">
+        <prompt>Who is the host of current Cosmos series?</prompt>
+        <answer>Carl Sagan</answer>
+        <answer correct="true">Neil Degrasse Tyson</answer>
+        <answer>Bill Nye</answer>
+        <answer>Sean Connery</answer>
+    </question>
+    <question subject="history" difficulty="8">
+        <prompt>During which year did the American revolutionary war start?</prompt>
+        <answer correct="true">1775</answer>
+        <answer>1876</answer>
+        <answer>1812</answer>
+        <answer>1784</answer>
     </question>
 </questions>
