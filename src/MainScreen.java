@@ -17,8 +17,61 @@ public class MainScreen extends JFrame implements ActionListener,WindowListener,
     private JButton startBtn = new JButton ("Start");
     private JButton instructionsBtn = new JButton ("Instructions");
     private JButton quitBtn = new JButton ("Quit");
-    
-    //Need to make game scren window
+
+    // For ActionListener interface
+    public void actionPerformed (ActionEvent e)
+    {
+    }
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowDeactivated (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowDeiconified (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowIconified (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowOpened (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowClosed (WindowEvent e)
+    {
+    }
+
+    // For WindowListener interface
+    public void windowClosing (WindowEvent e)
+    {
+    }
+
+
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowActivated (WindowEvent e)
+    {
+    }
+
+    // For WindowFocusListener interface
+    public void windowGainedFocus (WindowEvent e)
+    {
+    }
+
+    // For WindowFocusListener interface
+    public void windowLostFocus (WindowEvent e)
+    {
+    }
     
 }
 
