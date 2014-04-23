@@ -14,19 +14,25 @@ import java.awt.event.WindowFocusListener;
 public class MainScreen extends JFrame implements ActionListener,WindowListener,WindowFocusListener
 {
     private BufferedImage titlePage;
-    private JButton startBtn = new JButton ("Start");
-    private JButton instructionsBtn = new JButton ("Instructions");
-    private JButton quitBtn = new JButton ("Quit");
-
+    private JButton startBtn, instructionsBtn, quitBtn;
     public MainScreen() {
+
+        // SETUP GUI
         setTitle("WWTBAM");
         setSize(800, 450); // default size is 0,0
         setDefaultLookAndFeelDecorated(true);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel p = new JPanel();
+        // create buttons
+        startBtn = new JButton("Start");
+        instructionsBtn = new JButton("Instructions");
+        quitBtn = new JButton("Quit");
+        // add ActionListeners
+        quitBtn.addActionListener(this);
+
         // populate JFrame
-
+        JPanel p = new JPanel();
         p.add(startBtn);
         p.add(instructionsBtn);
         p.add(quitBtn);
@@ -37,6 +43,8 @@ public class MainScreen extends JFrame implements ActionListener,WindowListener,
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
+        if (e.getSource().equals(quitBtn))
+            dispose();
     }
 
     // Method that must be implemented because of Window Listener, does nothing
@@ -90,7 +98,4 @@ public class MainScreen extends JFrame implements ActionListener,WindowListener,
     }
     
 }
-
-
-
 

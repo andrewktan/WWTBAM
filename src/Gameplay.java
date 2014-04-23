@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
 public class Gameplay extends JFrame implements ActionListener, WindowListener
 {
     //Four main choices buttons
-    ArrayList < JButton > choiceList = new ArrayList < JButton > ();
+    private ArrayList< JButton > choiceList = new ArrayList < JButton > ();
 
     //Visual for the question box
     private BufferedImage questionBox;
@@ -19,8 +20,8 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     private String player;
 
     //Questions & Answers
-    ArrayList < Question > questions;
-    ArrayList < String > answers;
+    private ArrayList < Question > questions;
+    private ArrayList < String > answers;
 
     //Score
     private int score;
@@ -30,12 +31,10 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     private JMenu InstructionsMENU = new JMenu ("Information");
     private JMenuItem newMENU = new JMenuItem ("New Game");
 
-    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
-
     public Gameplay ()
     {
-
-	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1));
+    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
+	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
 	answers = currentQuestion.getAnswers ();
 
 	try
@@ -47,7 +46,7 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
 
 	}
 
-	catch (IOException e)
+	catch (Exception e)
 	{
 
 	}
@@ -57,6 +56,10 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
 
     }
 
+    // for ActionListener interface
+    public void actionPerformed (ActionEvent e)
+    {
+    }
 
     // Method that must be implemented because of Window Listener, does nothing
     public void windowDeactivated (WindowEvent e)
@@ -87,6 +90,10 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     {
     }
 
+    // Method that must be implemented because of Window Listener, does nothing
+    public void windowClosing (WindowEvent e)
+    {
+    }
 
     // Method that must be implemented because of Window Listener, does nothing
     public void windowActivated (WindowEvent e)
