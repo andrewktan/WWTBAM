@@ -41,10 +41,9 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
 	private JMenu InstructionsMENU = new JMenu ("Information");
 	private JMenuItem newMENU = new JMenuItem ("New Game");
 
-	public Gameplay ()
+	public Gameplay (Question currentQuestion)
 	{
-	    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
-	    Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
+	   
 	    answers = currentQuestion.getAnswers ();
 
 	    try

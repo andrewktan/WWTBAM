@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;git o
-import javax.imageio.ImageIO;
+import java.io.IOException;
+git o
+    import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -16,37 +17,48 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     private BufferedImage titlePage;
 
     private JButton startBtn, instructionsBtn, quitBtn;
-    public MainScreen() {
+
+    public MainScreen ()
+    {
 
 	// SETUP GUI
-	setTitle("WWTBAM");
-	setSize(800, 450); // default size is 0,0
-	setDefaultLookAndFeelDecorated(true);
-	setLocationRelativeTo(null);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setTitle ("WWTBAM");
+	setSize (800, 450); // default size is 0,0
+	setDefaultLookAndFeelDecorated (true);
+	setLocationRelativeTo (null);
+	setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
 	// create buttons
-	startBtn = new JButton("Start");
-	instructionsBtn = new JButton("Instructions");
-	quitBtn = new JButton("Quit");
+	startBtn = new JButton ("Start");
+	instructionsBtn = new JButton ("Instructions");
+	quitBtn = new JButton ("Quit");
 	// add ActionListeners
-	quitBtn.addActionListener(this);
+	quitBtn.addActionListener (this);
 
 	// populate JFrame
-	JPanel p = new JPanel();
-	p.add(startBtn);
-	p.add(instructionsBtn);
-	p.add(quitBtn);
+	JPanel p = new JPanel ();
+	p.add (startBtn);
+	p.add (instructionsBtn);
+	p.add (quitBtn);
 
 	this.setContentPane (p);
+    }
+
+
+    public void nextScreen ()
+    {
+	this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
+	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
+
+	Gameplay next = new Gameplay (currentQuestion);
     }
 
 
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
-	if (e.getSource().equals(quitBtn))
-	    dispose();
+	if (e.getSource ().equals (quitBtn))
+	    dispose ();
     }
 
 
@@ -102,10 +114,11 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     public void windowLostFocus (WindowEvent e)
     {
     }
-    
+
+
     public void main (String[] args)
     {
-	
+
     }
 }
 
