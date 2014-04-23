@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Gameplay extends JFrame implements ActionListener, WindowListener
 {
     //Four main choices buttons
-    private ArrayList< JButton > choiceList = new ArrayList < JButton > ();
+    private ArrayList < JButton > choiceList = new ArrayList < JButton > ();
 
     //Visual for the question box
     private BufferedImage questionBox;
@@ -27,101 +27,86 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     private int score;
 
     //Menu
-<<<<<<< HEAD
     private JMenuBar menuBar = new JMenuBar ();
     private JMenu GameMENU = new JMenu ("Game");
-    menuBar.Aadd(GameMENU);
+    menuBar.Aadd (GameMENU);
     private JMenuItem newGameITEM = new JMenuItem ("New Game");
-    GameMENU.add(newGameITEM);
+    GameMENU.add (newGameITEM);
 
     public Gameplay ()
     {
-<<<<<<< HEAD
-
+	this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
 	Question currentQuestion = questions.remove ((int) (Math.random () * questions.size () + 1));
-=======
-    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
-	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
->>>>>>> 87d981f9e87eb6ea2bdbfec83839016d3e8e6d4c
-=======
-    private JMenuBar mainMENU = new JMenuBar ();
-    private JMenu InstructionsMENU = new JMenu ("Information");
-    private JMenuItem newMENU = new JMenuItem ("New Game");
+	private JMenuBar mainMENU = new JMenuBar ();
+	private JMenu InstructionsMENU = new JMenu ("Information");
+	private JMenuItem newMENU = new JMenuItem ("New Game");
 
-    public Gameplay ()
-    {
-    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
-	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
->>>>>>> 87d981f9e87eb6ea2bdbfec83839016d3e8e6d4c
-	answers = currentQuestion.getAnswers ();
-
-	try
+	public Gameplay ()
 	{
-	    for (int x = 0 ; x < answers.size () ; x++)
+	    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
+	    Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
+	    answers = currentQuestion.getAnswers ();
+
+	    try
 	    {
-		choiceList.add (new JButton (answers.get (x)));
+		for (int x = 0 ; x < answers.size () ; x++)
+		{
+		    choiceList.add (new JButton (answers.get (x)));
+		}
+
 	    }
 
+	    catch (Exception e)
+	    {
+
+	    }
+
+
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	catch (IOException e)  //Just in case
-=======
-	catch (Exception e)
->>>>>>> 87d981f9e87eb6ea2bdbfec83839016d3e8e6d4c
-=======
-	catch (Exception e)
->>>>>>> 87d981f9e87eb6ea2bdbfec83839016d3e8e6d4c
+	// for ActionListener interface
+	public void actionPerformed (ActionEvent e)
 	{
+	}
 
+	// Method that must be implemented because of Window Listener, does nothing
+	public void windowDeactivated (WindowEvent e)
+	{
 	}
 
 
+	// Method that must be implemented because of Window Listener, does nothing
+	public void windowDeiconified (WindowEvent e)
+	{
+	}
+
+
+	// Method that must be implemented because of Window Listener, does nothing
+	public void windowIconified (WindowEvent e)
+	{
+	}
+
+
+	// Method that must be implemented because of Window Listener, does nothing
+	public void windowOpened (WindowEvent e)
+	{
+	}
+
+
+	// Method that must be implemented because of Window Listener, does nothing
+	public void windowClosed (WindowEvent e)
+	{
+	}
+
+	// Method that must be implemented because of Window Listener, does nothing
+	public void windowClosing (WindowEvent e)
+	{
+	}
+
+	// Method that must be implemented because of Window Listener, does nothing
+	public void windowActivated (WindowEvent e)
+	{
+	}
     }
 
-    // for ActionListener interface
-    public void actionPerformed (ActionEvent e)
-    {
-    }
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowDeactivated (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowDeiconified (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowIconified (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowOpened (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowClosed (WindowEvent e)
-    {
-    }
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowClosing (WindowEvent e)
-    {
-    }
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowActivated (WindowEvent e)
-    {
-    }
-}
 
