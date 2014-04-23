@@ -27,6 +27,7 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     private int score;
 
     //Menu
+<<<<<<< HEAD
     private JMenuBar menuBar = new JMenuBar ();
     private JMenu GameMENU = new JMenu ("Game");
     menuBar.Aadd(GameMENU);
@@ -42,6 +43,16 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
 	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
 >>>>>>> 87d981f9e87eb6ea2bdbfec83839016d3e8e6d4c
+=======
+    private JMenuBar mainMENU = new JMenuBar ();
+    private JMenu InstructionsMENU = new JMenu ("Information");
+    private JMenuItem newMENU = new JMenuItem ("New Game");
+
+    public Gameplay ()
+    {
+    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
+	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
+>>>>>>> 87d981f9e87eb6ea2bdbfec83839016d3e8e6d4c
 	answers = currentQuestion.getAnswers ();
 
 	try
@@ -54,7 +65,11 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	catch (IOException e)  //Just in case
+=======
+	catch (Exception e)
+>>>>>>> 87d981f9e87eb6ea2bdbfec83839016d3e8e6d4c
 =======
 	catch (Exception e)
 >>>>>>> 87d981f9e87eb6ea2bdbfec83839016d3e8e6d4c

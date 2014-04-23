@@ -14,23 +14,29 @@ import java.awt.event.WindowFocusListener;
 public class MainScreen extends JFrame implements ActionListener, WindowListener, WindowFocusListener
 {
     private BufferedImage titlePage;
-    private JButton startBtn = new JButton ("Start");
-    private JButton instructionsBtn = new JButton ("Instructions");
-    private JButton quitBtn = new JButton ("Quit");
 
-    public MainScreen ()
-    {
-	setTitle ("WWTBAM");
-	setSize (800, 450); // default size is 0,0
-	setDefaultLookAndFeelDecorated (true);
-	setLocationRelativeTo (null);
+    private JButton startBtn, instructionsBtn, quitBtn;
+    public MainScreen() {
 
-	JPanel p = new JPanel ();
+	// SETUP GUI
+	setTitle("WWTBAM");
+	setSize(800, 450); // default size is 0,0
+	setDefaultLookAndFeelDecorated(true);
+	setLocationRelativeTo(null);
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	// create buttons
+	startBtn = new JButton("Start");
+	instructionsBtn = new JButton("Instructions");
+	quitBtn = new JButton("Quit");
+	// add ActionListeners
+	quitBtn.addActionListener(this);
+
 	// populate JFrame
-
-	p.add (startBtn);
-	p.add (instructionsBtn);
-	p.add (quitBtn);
+	JPanel p = new JPanel();
+	p.add(startBtn);
+	p.add(instructionsBtn);
+	p.add(quitBtn);
 
 	this.setContentPane (p);
     }
@@ -39,6 +45,8 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
+	if (e.getSource().equals(quitBtn))
+	    dispose();
     }
 
 
@@ -100,7 +108,4 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 	
     }
 }
-
-
-
 
