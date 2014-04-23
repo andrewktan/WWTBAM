@@ -18,6 +18,22 @@ public class MainScreen extends JFrame implements ActionListener,WindowListener,
     private JButton instructionsBtn = new JButton ("Instructions");
     private JButton quitBtn = new JButton ("Quit");
 
+    public MainScreen() {
+        setTitle("WWTBAM");
+        setSize(800, 450); // default size is 0,0
+        setDefaultLookAndFeelDecorated(true);
+        setLocationRelativeTo(null);
+
+        JPanel p = new JPanel();
+        // populate JFrame
+
+        p.add(startBtn);
+        p.add(instructionsBtn);
+        p.add(quitBtn);
+
+        this.setContentPane(p);
+    }
+
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
