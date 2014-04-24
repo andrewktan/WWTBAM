@@ -10,43 +10,59 @@ import java.awt.image.BufferedImage;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowFocusListener;
+import java.util.ArrayList;
 
 public class MainScreen extends JFrame implements ActionListener, WindowListener, WindowFocusListener
 {
+    // objects for GUI
     private BufferedImage titlePage;
 
     private JButton startBtn, instructionsBtn, quitBtn;
-    public MainScreen() {
+
+    // objects for gameplay
+    private ArrayList< Question > questions;
+
+    public MainScreen ()
+    {
 
 	// SETUP GUI
-	setTitle("WWTBAM");
-	setSize(800, 450); // default size is 0,0
-	setDefaultLookAndFeelDecorated(true);
-	setLocationRelativeTo(null);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setTitle ("WWTBAM");
+	setSize (800, 450); // default size is 0,0
+	setDefaultLookAndFeelDecorated (true);
+	setLocationRelativeTo (null);
+	setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
 	// create buttons
-	startBtn = new JButton("Start");
-	instructionsBtn = new JButton("Instructions");
-	quitBtn = new JButton("Quit");
+	startBtn = new JButton ("Start");
+	instructionsBtn = new JButton ("Instructions");
+	quitBtn = new JButton ("Quit");
 	// add ActionListeners
-	quitBtn.addActionListener(this);
+	quitBtn.addActionListener (this);
 
 	// populate JFrame
-	JPanel p = new JPanel();
-	p.add(startBtn);
-	p.add(instructionsBtn);
-	p.add(quitBtn);
+	JPanel p = new JPanel ();
+	p.add (startBtn);
+	p.add (instructionsBtn);
+	p.add (quitBtn);
 
 	this.setContentPane (p);
+    }
+
+
+    public void nextScreen ()
+    {
+	this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
+	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
+
+	Gameplay next = new Gameplay (currentQuestion);
     }
 
 
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
-	if (e.getSource().equals(quitBtn))
-	    dispose();
+	if (e.getSource ().equals (quitBtn))
+	    dispose ();
     }
 
 
@@ -102,10 +118,11 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     public void windowLostFocus (WindowEvent e)
     {
     }
-    
+
+
     public void main (String[] args)
     {
-	
+
     }
 }
 
