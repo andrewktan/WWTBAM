@@ -29,38 +29,35 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     //Menu
     private JMenuBar menuBar = new JMenuBar ();
     private JMenu GameMENU = new JMenu ("Game");
-    menuBar.Aadd (GameMENU);
     private JMenuItem newGameITEM = new JMenuItem ("New Game");
-    GameMENU.add (newGameITEM);
+    private JMenuBar mainMENU = new JMenuBar ();
+    private JMenu InstructionsMENU = new JMenu ("Information");
+    private JMenuItem newMENU = new JMenuItem ("New Game");
 
     public Gameplay ()
     {
+
+    menuBar.add (GameMENU);
+
+    GameMENU.add (newGameITEM);
+
+
 	this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
 	Question currentQuestion = questions.remove ((int) (Math.random () * questions.size () + 1));
-	private JMenuBar mainMENU = new JMenuBar ();
-	private JMenu InstructionsMENU = new JMenu ("Information");
-	private JMenuItem newMENU = new JMenuItem ("New Game");
 
-	public Gameplay ()
-	{
-	    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
-	    Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
-	    answers = currentQuestion.getAnswers ();
 
-	    try
+    answers = currentQuestion.getAnswers ();
+
+    try
+    {
+    	for (int x = 0 ; x < answers.size () ; x++)
 	    {
-		for (int x = 0 ; x < answers.size () ; x++)
-		{
-		    choiceList.add (new JButton (answers.get (x)));
-		}
-
+	    choiceList.add (new JButton (answers.get (x)));
 	    }
-
-	    catch (Exception e)
-	    {
-
-	    }
-
+    }
+    catch (Exception e)
+    {
+    }
 
 	}
 
