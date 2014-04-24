@@ -16,7 +16,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 {
     // objects for GUI
     private BufferedImage titlePage;
-
+    private JPanel mainMenu = new JPanel();
     private JButton startBtn, instructionsBtn, quitBtn;
 
     // objects for gameplay
@@ -24,6 +24,8 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
     public MainScreen ()
     {
+    // read from file
+    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
 
 	// SETUP GUI
 	setTitle ("WWTBAM");
@@ -38,31 +40,39 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 	quitBtn = new JButton ("Quit");
 	// add ActionListeners
 	quitBtn.addActionListener (this);
+    startBtn.addActionListener(this);
 
-	// populate JFrame
-	JPanel p = new JPanel ();
-	p.add (startBtn);
-	p.add (instructionsBtn);
-	p.add (quitBtn);
+	// populate JPanel
+    mainMenu.add (startBtn);
+    mainMenu.add (instructionsBtn);
+    mainMenu.add(quitBtn);
 
-	this.setContentPane (p);
+	this.setContentPane (mainMenu);
     }
 
 
     public void nextScreen ()
     {
-	this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
-	Question currentQuestion = questions.get ((int) (Math.random () * questions.size ()) + 1);
+	Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
 
-	Gameplay next = new Gameplay (currentQuestion);
+	Gameplay next = new Gameplay (currentQuestion, this);
+    this.setContentPane(next);
+    pack();
     }
 
 
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
-	if (e.getSource ().equals (quitBtn))
-	    dispose ();
+	    if (e.getSource ().equals (quitBtn))
+        {
+	        dispose ();
+        } else if (e.getSource().equals(startBtn)) {
+            nextScreen();
+        } else {
+            nextScreen();
+        }
+
     }
 
 

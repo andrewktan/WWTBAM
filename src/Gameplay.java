@@ -8,9 +8,10 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
-public class Gameplay extends JFrame implements ActionListener, WindowListener
+public class Gameplay extends JPanel implements ActionListener, WindowListener
 {
     //Four main choices buttons
+    private JLabel prompt;
     private ArrayList < JButton > choiceList = new ArrayList < JButton > ();
 
     //Visual for the question box
@@ -22,6 +23,7 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     //Questions & Answers
     private ArrayList < Question > questions;
     private ArrayList < String > answers;
+    private Question currentQuestion;
 
     //Score
     private int score;
@@ -33,16 +35,26 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
     private JMenuBar mainMENU = new JMenuBar ();
     private JMenu InstructionsMENU = new JMenu ("Information");
     private JMenuItem newMENU = new JMenuItem ("New Game");
+    private ActionListener ae;
 
-	public Gameplay (Question currentQuestion)
+	public Gameplay (Question currentQuestion, ActionListener ae)
 	{
-    answers = currentQuestion.getAnswers ();
+    this.currentQuestion = currentQuestion;
+    this.ae = ae;
+    answers = currentQuestion.getAnswers();
 
+    // initializing prompt
+    prompt = new JLabel(currentQuestion.getPrompt());
+    this.add(prompt);
+    // initializing buttons
     try
     {
     	for (int x = 0 ; x < answers.size () ; x++)
 	    {
-	    choiceList.add (new JButton (answers.get (x)));
+	        choiceList.add (new JButton (answers.get(x))); // initialize
+            this.add(choiceList.get(x)); // add to panel
+            choiceList.get(x).addActionListener(this);
+            choiceList.get(x).addActionListener(ae);
 	    }
     }
     catch (Exception e)
@@ -54,6 +66,10 @@ public class Gameplay extends JFrame implements ActionListener, WindowListener
 	// for ActionListener interface
 	public void actionPerformed (ActionEvent e)
 	{
+        if (choiceList.indexOf(e.getSource()) == this.currentQuestion.getCorrect())
+            System.out.println("CORRECT");
+        else
+            System.out.println("WRONG");
 	}
 
 	// Method that must be implemented because of Window Listener, does nothing

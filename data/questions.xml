@@ -31,5 +31,12 @@
         <answer>1784</answer>
     </question>
     <!-- VIDEO GAMES -->
+    <question subject="games" difficulty="6">
+        <prompt>What was the name of the main antagonist of the original Assassin's Creed?</prompt>
+        <answer correct="true">Al Mualim</answer>
+        <answer>Al Tair</answer>
+        <answer>Tariq</answer>
+        <answer>Robert de Sable</answer>
+    </question>
     <!-- COMPUTERS -->
 </questions>
