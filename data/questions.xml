@@ -14,12 +14,29 @@
         <answer correct="true">Tungsten</answer>
         <answer>Iron</answer>
     </question>
+    <question subject="science" difficulty="5">
+        <prompt>Which scientist has won two Nobel prizes?</prompt>
+        <answer correct="true">Marie Curie</answer>
+        <answer>Albert Einstein</answer>
+        <answer>Niels Bohr</answer>
+        <answer>Max Planck</answer>
+    </question>
+    <question subject="science" difficulty="4">
+
+    </question>
     <!-- TV and MOVIES -->
     <question subject="tv" difficulty="5">
         <prompt>Who is the host of current Cosmos series?</prompt>
         <answer>Carl Sagan</answer>
         <answer correct="true">Neil Degrasse Tyson</answer>
         <answer>Bill Nye</answer>
+        <answer>Sean Connery</answer>
+    </question>
+    <question subject="tv" difficulty="6">
+        <prompt>Who played the father in Malcolm in the Middle?</prompt>
+        <answer correct="true">Brian Cranston</answer>
+        <answer>Jimmy Fallon</answer>
+        <answer>Rob Ford</answer>
         <answer>Sean Connery</answer>
     </question>
     <!-- HISTORY -->
@@ -39,4 +56,11 @@
         <answer>Robert de Sable</answer>
     </question>
     <!-- COMPUTERS -->
+    <question subject="computers" difficulty="7">
+        <prompt>Which type of computer memory stores information on capacitors which need to be recharged periodically?</prompt>
+        <answer correct="true">DRAM</answer>
+        <answer>HDD</answer>
+        <answer>SRAM</answer>
+        <answer>EEPROM</answer>
+    </question>
 </questions>

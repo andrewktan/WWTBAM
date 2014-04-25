@@ -51,10 +51,11 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
     {
     	for (int x = 0 ; x < answers.size () ; x++)
 	    {
-	        choiceList.add (new JButton (answers.get(x))); // initialize
-            this.add(choiceList.get(x)); // add to panel
-            choiceList.get(x).addActionListener(this);
-            choiceList.get(x).addActionListener(ae);
+            JButton choice = new JButton(answers.get(x));
+	        choiceList.add (choice); // initialize
+            this.add(choice); // add to panel
+            choice.addActionListener(this);
+            choice.addActionListener(ae);
 	    }
     }
     catch (Exception e)

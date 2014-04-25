@@ -29,8 +29,9 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
 	// SETUP GUI
 	setTitle ("WWTBAM");
-	setSize (800, 450); // default size is 0,0
+	setSize (800, 450);
 	setDefaultLookAndFeelDecorated (true);
+    setResizable(false);
 	setLocationRelativeTo (null);
 	setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
@@ -53,11 +54,19 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
     public void nextScreen ()
     {
-	Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
+        // if there are no more questions, end game
+        if (questions.size() == 0) {
+            dispose();
+            return;
+        }
 
-	Gameplay next = new Gameplay (currentQuestion, this);
-    this.setContentPane(next);
-    pack();
+        // randomly select question
+	    Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
+
+	    Gameplay next = new Gameplay (currentQuestion, this);
+        this.setContentPane(next);
+        pack();
+        setSize (800, 450);
     }
 
 
