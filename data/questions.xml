@@ -21,9 +21,6 @@
         <answer>Niels Bohr</answer>
         <answer>Max Planck</answer>
     </question>
-    <question subject="science" difficulty="4">
-
-    </question>
     <!-- TV and MOVIES -->
     <question subject="tv" difficulty="5">
         <prompt>Who is the host of current Cosmos series?</prompt>
@@ -62,5 +59,12 @@
         <answer>HDD</answer>
         <answer>SRAM</answer>
         <answer>EEPROM</answer>
+    </question>
+    <question subject="computers" difficulty="9">
+        <prompt>Which of the following is a protocol on the application layer of the OSI model?</prompt>
+        <answer correct="true">FTP</answer>
+        <answer>TCP</answer>
+        <answer>UDP</answer>
+        <answer>RARP</answer>
     </question>
 </questions>
