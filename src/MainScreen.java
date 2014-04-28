@@ -25,7 +25,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     public MainScreen ()
     {
     // read from file
-    this.questions = QuestionReader.readQuestionsFromFile ("questions.xml");
+    this.questions = Question.readQuestionsFromFile ("questions.xml");
 
 	// SETUP GUI
 	setTitle ("WWTBAM");
