@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Gameplay extends JPanel implements ActionListener, WindowListener
 {
     // Status
-    private boolean answered = false, correct;
+    private boolean correct;
 
     //Four main choices buttons
     private JLabel prompt;
@@ -58,8 +58,6 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 	        choiceList.add (choice); // initialize
             this.add(choice); // add to panel
             choice.addActionListener(this);
-            if (currentQuestion.getCorrect() == x)
-                choice.addActionListener(ae);
 	    }
     }
     catch (Exception e)
@@ -68,10 +66,6 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 
 	}
 
-    public boolean isAnswered() {
-        return answered;
-    }
-
     public boolean isCorrect() {
         return correct;
     }
@@ -79,14 +73,14 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 	// for ActionListener interface
 	public void actionPerformed (ActionEvent e)
 	{
-        answered = true;
-        if (choiceList.indexOf(e.getSource()) == this.currentQuestion.getCorrect()) {
-            System.out.println("CORRECT");
+        // check if correct
+        if (choiceList.indexOf(e.getSource()) == this.currentQuestion.getCorrect())
             correct = true;
-        } else {
-            System.out.println("WRONG");
+        else
             correct = false;
-        }
+
+        // trigger MainScreen's ActionListener
+        ae.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
 	}
 
 	// Method that must be implemented because of Window Listener, does nothing
