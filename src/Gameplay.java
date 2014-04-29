@@ -114,16 +114,11 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 
     }
 
-
-
     public void paintComponent (Graphics g) {
 
         super.paintComponent(g); //overrides original pain component
         g.drawImage(screen,0,0,null);
     }
-
-
-
 
     public boolean isCorrect() {
         return correct;
