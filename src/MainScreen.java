@@ -18,6 +18,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     private BufferedImage titlePage;
     private JPanel mainMenu = new JPanel();
     private JButton startBtn, instructionsBtn, quitBtn;
+    private Graphics g;
 
     // objects for gameplay
     private ArrayList< Question > questions;
@@ -34,7 +35,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
 	// SETUP GUI
 	setTitle ("WWTBAM");
-	setSize (800, 450);
+	setSize (908, 658);
 	setDefaultLookAndFeelDecorated (true);
     setResizable(false);
 	setLocationRelativeTo (null);
@@ -71,7 +72,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 	    currentGameplay = new Gameplay (currentQuestion, this);
         setContentPane(currentGameplay);
         pack();
-        setSize (800, 450);
+        setSize (908, 658); //dimensions needed for the template picture of the questions/asnwers
     }
 
 

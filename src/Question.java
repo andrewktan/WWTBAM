@@ -88,7 +88,7 @@ public class Question
         {
             // create Document object
             SAXReader reader = new SAXReader ();
-            Document document = reader.read (new FileInputStream("/home/andrew/WWTBAM/data/" + str));
+            Document document = reader.read (new FileInputStream("data/" + str));
 
             // read data
             Element root = document.getRootElement ();
