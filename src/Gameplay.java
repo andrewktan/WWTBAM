@@ -13,7 +13,7 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 {
     //Pics
     private BufferedImage screen;
-    private BufferedImage promptBox;
+    private BufferedImage choiceBox;
 
     // Status
     private boolean correct;
@@ -66,12 +66,23 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
         } catch (IOException e) {
         }
 
+        try { //Imports image for the buttons
+            choiceBox = ImageIO.read(this.getClass().getResource("choice_box.jpg"));
+        } catch (IOException e) {
+        }
+
 
         try {
             for (int x = 0; x < answers.size(); x++) {
-                JButton choice = new JButton(answers.get(x));
+                JButton choice = new JButton(answers.get(x), new ImageIcon(choiceBox));
+                choice.setHorizontalTextPosition(SwingConstants.CENTER);
                 choiceList.add(choice); // initialize
+
+                choice.setBorder(BorderFactory.createEmptyBorder());
+                choice.setContentAreaFilled(false);
+
                 this.add(choice); // add to panel
+
                 choice.addActionListener(this);
             }
         } catch (Exception e) {
@@ -87,40 +98,19 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
         prompt.setBounds(210 + insets.left, 195 + insets.top, 500, promptSize.height);
 
         //Top Two
-        choiceList.get(0).setBounds(170 + insets.left, 450 + insets.top, choiceSize.width, choiceSize.height);
-        choiceList.get(1).setBounds(500 + insets.left, 450 + insets.top,choiceSize.width, choiceSize.height );
+        choiceList.get(0).setBounds(127 + insets.left, 313 + insets.top, 300, 300);
+        choiceList.get(1).setBounds(459 + insets.left, 313 + insets.top, 300, 300);
+
+        //Bottom Two
+        choiceList.get(2).setBounds(127 + insets.left, 405 + insets.top, 300, 300);
+        choiceList.get(3).setBounds(459 + insets.left, 405 + insets.top, 300, 300);
+
+        /*choiceList.get(1).setBounds(500 + insets.left, 450 + insets.top,choiceSize.width, choiceSize.height );
 
         //Bottom Two
         choiceList.get(2).setBounds(170 + insets.left, 540 + insets.top, choiceSize.width, choiceSize.height);
         choiceList.get(3).setBounds(500 + insets.left, 540 + insets.top,choiceSize.width, choiceSize.height );
-
-
-        /*pane.setLayout(null);
-
-JButton b1 = new JButton("one");
-JButton b2 = new JButton("two");
-JButton b3 = new JButton("three");
-
-pane.add(b1);
-pane.add(b2);
-pane.add(b3);
-
-Insets insets = pane.getInsets();
-Dimension size = b1.getPreferredSize();
-b1.setBounds(25 + insets.left, 5 + insets.top,
-             size.width, size.height);
-size = b2.getPreferredSize();
-b2.setBounds(55 + insets.left, 40 + insets.top,
-             size.width, size.height);
-size = b3.getPreferredSize();
-b3.setBounds(150 + insets.left, 15 + insets.top,
-             size.width + 50, size.height + 20);
-
-...//In the main method:
-Insets insets = frame.getInsets();
-frame.setSize(300 + insets.left + insets.right,
-              125 + insets.top + insets.bottom);
-              */
+        */
 
     }
 
