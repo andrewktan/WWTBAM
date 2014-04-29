@@ -80,6 +80,7 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 
                 choice.setBorder(BorderFactory.createEmptyBorder());
                 choice.setContentAreaFilled(false);
+                choice.setForeground(Color.YELLOW);
 
                 this.add(choice); // add to panel
 
