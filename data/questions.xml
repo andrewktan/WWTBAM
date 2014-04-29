@@ -60,13 +60,6 @@
         <answer>Robert de Sablé</answer>
     </question>
     <!-- COMPUTERS -->
-    <question subject="computers" difficulty="7">
-        <prompt>Which type of computer memory stores information on capacitors that needs to be recharged periodically?</prompt>
-        <answer correct="true">DRAM</answer>
-        <answer>HDD</answer>
-        <answer>SRAM</answer>
-        <answer>EEPROM</answer>
-    </question>
     <question subject="computers" difficulty="9">
         <prompt>Which of the following is a protocol on the application layer of the OSI model?</prompt>
         <answer correct="true">FTP</answer>

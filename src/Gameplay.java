@@ -57,7 +57,7 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
         prompt.setForeground(Color.WHITE);
         prompt.setHorizontalAlignment(SwingConstants.CENTER);
 
-        prompt.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
+        prompt.setFont(new Font("Arial Unicode MS", Font.PLAIN, 16));
         this.add(prompt);
 
         try { //Imports image for the screen
