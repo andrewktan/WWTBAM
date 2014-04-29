@@ -31,7 +31,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     public MainScreen ()
     {
     // read from file
-    this.questions = Question.readQuestionsFromFile ("questions.xml");
+    questions = Question.readQuestionsFromFile ("questions.xml");
 
 	// SETUP GUI
 	setTitle ("WWTBAM");
@@ -85,13 +85,14 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         } else if (e.getSource().equals(startBtn)) { // start ptbutton
             nextScreen();
         } else { // question attempted
-            if (currentGameplay.isCorrect()) {
-                nextScreen();
-                score *= 2;
+            if (currentGameplay.isCorrect()) { // if correct
+                nextScreen(); // display next question
+                score *= 2; // increase score
                 System.out.printf("Your score is %d.\n", score);
-            } else {
-                score = 1;
-                setContentPane(mainMenu);
+            } else { // if incorrect
+                score = 1; // reset score
+                setContentPane(mainMenu); // return to main menu
+                questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
             }
         }
 

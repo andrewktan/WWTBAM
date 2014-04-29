@@ -124,16 +124,11 @@ frame.setSize(300 + insets.left + insets.right,
 
     }
 
-
-
     public void paintComponent (Graphics g) {
 
         super.paintComponent(g); //overrides original pain component
         g.drawImage(screen,0,0,null);
     }
-
-
-
 
     public boolean isCorrect() {
         return correct;
