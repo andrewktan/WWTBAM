@@ -45,7 +45,7 @@
     </question>
     <!-- HISTORY -->
     <question subject="history" difficulty="8">
-        <prompt>During which year did the American revolutionary war start?</prompt>
+        <prompt>When did the American Revolutionary War start?</prompt>
         <answer correct="true">1775</answer>
         <answer>1876</answer>
         <answer>1812</answer>
@@ -55,13 +55,13 @@
     <question subject="games" difficulty="6">
         <prompt>What was the name of the main antagonist of the original Assassin's Creed?</prompt>
         <answer correct="true">Al Mualim</answer>
-        <answer>Al Tair</answer>
-        <answer>Tariq</answer>
-        <answer>Robert de Sable</answer>
+        <answer>Altaïr ibn-La'Ahad</answer>
+        <answer>King Richard</answer>
+        <answer>Robert de Sablé</answer>
     </question>
     <!-- COMPUTERS -->
     <question subject="computers" difficulty="7">
-        <prompt>Which type of computer memory stores information on capacitors which need to be recharged periodically?</prompt>
+        <prompt>Which type of computer memory stores information on capacitors that needs to be recharged periodically?</prompt>
         <answer correct="true">DRAM</answer>
         <answer>HDD</answer>
         <answer>SRAM</answer>

@@ -15,10 +15,13 @@ import java.util.ArrayList;
 public class MainScreen extends JFrame implements ActionListener, WindowListener, WindowFocusListener
 {
     // objects for GUI
-    private BufferedImage titlePage;
+    private BufferedImage mainScreen, toolBar;
     private JPanel mainMenu = new JPanel();
-    private JButton startBtn, instructionsBtn, quitBtn;
-    private Graphics g;
+    private JButton startBtn = new JButton("Start");
+    private JButton instructionsBtn = new JButton("Instructions");
+    private JButton quitBtn = new JButton("Quit");
+
+    private Color[] color = new Color [10];
 
     // objects for gameplay
     private ArrayList< Question > questions;
@@ -27,6 +30,8 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // scoring
     private int score = 1;
 
+    // create buttons
+
 
     public MainScreen ()
     {
@@ -34,22 +39,39 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     questions = Question.readQuestionsFromFile ("questions.xml");
 
 	// SETUP GUI
-	setTitle ("WWTBAM");
+	setTitle ("Who Wants to Be a Millionaire?");
 	setSize (908, 658);
 	setDefaultLookAndFeelDecorated (true);
     setResizable(false);
 	setLocationRelativeTo (null);
 	setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
-	// create buttons
-	startBtn = new JButton ("Start");
-	instructionsBtn = new JButton ("Instructions");
-	quitBtn = new JButton ("Quit");
+     try { //Imports image for the screen
+            mainScreen = ImageIO.read(this.getClass().getResource("main_screen.jpg"));
+            toolBar = ImageIO.read (this.getClass ().getResource ("dollar_sign.jpg"));
+     } catch (IOException e) {
+     }
+
+     this.setIconImage(toolBar);
+
+
 	// add ActionListeners
 	quitBtn.addActionListener (this);
     startBtn.addActionListener(this);
 
-	// populate JPanel
+    //customize buttons
+
+    startBtn.setBackground(Color.WHITE);
+    instructionsBtn.setBackground(Color.WHITE);
+    quitBtn.setBackground(Color.WHITE);
+
+    // set up title image
+    JLabel title = new JLabel (new ImageIcon (mainScreen));
+    title.setPreferredSize (new Dimension (600, 620));
+    mainMenu.add(title, BorderLayout.WEST);
+    mainMenu.setBackground(Color.WHITE);
+
+    // populate JPanel
     mainMenu.add (startBtn);
     mainMenu.add (instructionsBtn);
     mainMenu.add(quitBtn);

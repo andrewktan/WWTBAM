@@ -21,7 +21,6 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
     //Four main choices buttons
     private JLabel prompt;
     private ArrayList < JButton > choiceList = new ArrayList < JButton > ();
-    private JButton sampleBTN = new JButton("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
     //Visual for the question box
     private BufferedImage questionBox;
@@ -55,22 +54,19 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 
         // initializing prompt
         prompt = new JLabel(currentQuestion.getPrompt());
-        //prompt.setIcon(new ImageIcon("prompt_box.jpg"));
         prompt.setForeground(Color.WHITE);
         prompt.setHorizontalAlignment(SwingConstants.CENTER);
+
+        prompt.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
         this.add(prompt);
-        // initializing buttons
 
         try { //Imports image for the screen
             screen = ImageIO.read(this.getClass().getResource("question_template.jpg"));
-        } catch (IOException e) {
-        }
-
-        try { //Imports image for the buttons
             choiceBox = ImageIO.read(this.getClass().getResource("choice_box.jpg"));
         } catch (IOException e) {
         }
 
+        // initializing buttons
 
         try {
             for (int x = 0; x < answers.size(); x++) {
@@ -94,28 +90,21 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 
         Insets insets = this.getInsets();
         Dimension promptSize = prompt.getPreferredSize();
-        Dimension choiceSize = sampleBTN.getPreferredSize();
 
-        prompt.setBounds(210 + insets.left, 195 + insets.top, 500, promptSize.height);
+        prompt.setBounds(110 + insets.left, 195 + insets.top, 680, 2*promptSize.height); //Prompt
 
         //Top Two
-        choiceList.get(0).setBounds(127 + insets.left, 313 + insets.top, 300, 300);
-        choiceList.get(1).setBounds(459 + insets.left, 313 + insets.top, 300, 300);
+        choiceList.get(0).setBounds(127 + insets.left, 425 + insets.top, 300, 75);
+        choiceList.get(1).setBounds(459 + insets.left, 425 + insets.top, 300, 75);
 
         //Bottom Two
-        choiceList.get(2).setBounds(127 + insets.left, 405 + insets.top, 300, 300);
-        choiceList.get(3).setBounds(459 + insets.left, 405 + insets.top, 300, 300);
+        choiceList.get(2).setBounds(127 + insets.left, 517 + insets.top, 300, 75);
+        choiceList.get(3).setBounds(459 + insets.left, 517 + insets.top, 300, 75);
 
-        /*choiceList.get(1).setBounds(500 + insets.left, 450 + insets.top,choiceSize.width, choiceSize.height );
-
-        //Bottom Two
-        choiceList.get(2).setBounds(170 + insets.left, 540 + insets.top, choiceSize.width, choiceSize.height);
-        choiceList.get(3).setBounds(500 + insets.left, 540 + insets.top,choiceSize.width, choiceSize.height );
-        */
 
     }
 
-    public void paintComponent (Graphics g) {
+    public void paintComponent (Graphics g) { //Loads background
 
         super.paintComponent(g); //overrides original pain component
         g.drawImage(screen,0,0,null);
