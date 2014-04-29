@@ -1,3 +1,5 @@
+import org.omg.CORBA.BAD_INV_ORDER;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -20,8 +22,6 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     private JButton startBtn = new JButton("Start");
     private JButton instructionsBtn = new JButton("Instructions");
     private JButton quitBtn = new JButton("Quit");
-
-    private Color[] color = new Color [10];
 
     // objects for gameplay
     private ArrayList< Question > questions;
@@ -46,6 +46,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 	setLocationRelativeTo (null);
 	setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
+
      try { //Imports image for the screen
             mainScreen = ImageIO.read(this.getClass().getResource("main_screen.jpg"));
             toolBar = ImageIO.read (this.getClass ().getResource ("dollar_sign.jpg"));
@@ -64,6 +65,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     startBtn.setBackground(Color.WHITE);
     instructionsBtn.setBackground(Color.WHITE);
     quitBtn.setBackground(Color.WHITE);
+
 
     // set up title image
     JLabel title = new JLabel (new ImageIcon (mainScreen));
@@ -94,7 +96,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 	    currentGameplay = new Gameplay (currentQuestion, this);
         setContentPane(currentGameplay);
         pack();
-        setSize (908, 658); //dimensions needed for the template picture of the questions/asnwers
+        setSize (1100, 658); //dimensions needed for the template picture of the questions/asnwers
     }
 
 
@@ -115,6 +117,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                 score = 1; // reset score
                 setContentPane(mainMenu); // return to main menu
                 questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
+                this.setSize (908, 658);
             }
         }
 
