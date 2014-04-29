@@ -21,6 +21,11 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
     // objects for gameplay
     private ArrayList< Question > questions;
+    private Gameplay currentGameplay;
+
+    // scoring
+    private int score = 1;
+
 
     public MainScreen ()
     {
@@ -63,8 +68,8 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         // randomly select question
 	    Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
 
-	    Gameplay next = new Gameplay (currentQuestion, this);
-        this.setContentPane(next);
+	    currentGameplay = new Gameplay (currentQuestion, this);
+        setContentPane(currentGameplay);
         pack();
         setSize (800, 450);
     }
@@ -73,13 +78,20 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
-	    if (e.getSource ().equals (quitBtn))
+	    if (e.getSource ().equals (quitBtn)) // quit button
         {
-	        dispose ();
-        } else if (e.getSource().equals(startBtn)) {
+	        dispose();
+        } else if (e.getSource().equals(startBtn)) { // start ptbutton
             nextScreen();
-        } else {
-            nextScreen();
+        } else { // question attempted
+            if (currentGameplay.isCorrect()) {
+                nextScreen();
+                score *= 2;
+                System.out.printf("Your score is %d.\n", score);
+            } else {
+                score = 1;
+                setContentPane(mainMenu);
+            }
         }
 
     }

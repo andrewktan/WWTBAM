@@ -36,6 +36,13 @@
         <answer>Rob Ford</answer>
         <answer>Sean Connery</answer>
     </question>
+    <question subject="tv" difficulty="8">
+        <prompt>Who received mainstream success with a remake of "Who Let the Dogs Out?"</prompt>
+        <answer correct="true">Baha Men</answer>
+        <answer>The Proclaimers</answer>
+        <answer>Smash Mouth</answer>
+        <answer>Eiffel 65</answer>
+    </question>
     <!-- HISTORY -->
     <question subject="history" difficulty="8">
         <prompt>During which year did the American revolutionary war start?</prompt>
