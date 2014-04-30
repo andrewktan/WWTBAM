@@ -36,13 +36,7 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
     //Score
     private int score;
 
-    //Menu
-    private JMenuBar menuBar = new JMenuBar ();
-    private JMenu GameMENU = new JMenu ("Game");
-    private JMenuItem newGameITEM = new JMenuItem ("New Game");
-    private JMenuBar mainMENU = new JMenuBar ();
-    private JMenu InstructionsMENU = new JMenu ("Information");
-    private JMenuItem newMENU = new JMenuItem ("New Game");
+
     private ActionListener ae;
 
 	public Gameplay (Question currentQuestion, ActionListener ae) {

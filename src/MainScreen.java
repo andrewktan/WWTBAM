@@ -1,4 +1,5 @@
 import org.omg.CORBA.BAD_INV_ORDER;
+import sun.plugin2.message.GetAppletMessage;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -23,6 +24,12 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     private JButton instructionsBtn = new JButton("Instructions");
     private JButton quitBtn = new JButton("Quit");
 
+    //Menus
+    private JMenuBar menuBar = new JMenuBar ();
+    private JMenu GameMENU = new JMenu ("Game");
+    private JMenuItem newGameITEM = new JMenuItem ("New Game");
+    private JMenu InstructionsMENU = new JMenu ("Information");
+
     // objects for gameplay
     private ArrayList< Question > questions;
     private Gameplay currentGameplay;
@@ -35,6 +42,13 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
     public MainScreen ()
     {
+
+    //Menus
+    menuBar.add(GameMENU);
+    menuBar.add(InstructionsMENU);
+    GameMENU.add(newGameITEM);
+    newGameITEM.addActionListener(this);
+    this.setJMenuBar(menuBar);
     // read from file
     questions = Question.readQuestionsFromFile ("questions.xml");
 
@@ -96,7 +110,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 	    currentGameplay = new Gameplay (currentQuestion, this);
         setContentPane(currentGameplay);
         pack();
-        setSize (1100, 658); //dimensions needed for the template picture of the questions/asnwers
+        setSize (1100, 675); //dimensions needed for the template picture of the questions/asnwers
     }
 
 
@@ -106,7 +120,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 	    if (e.getSource ().equals (quitBtn)) // quit button
         {
 	        dispose();
-        } else if (e.getSource().equals(startBtn)) { // start ptbutton
+        } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start ptbutton
             nextScreen();
         } else { // question attempted
             if (currentGameplay.isCorrect()) { // if correct
@@ -117,7 +131,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                 score = 1; // reset score
                 setContentPane(mainMenu); // return to main menu
                 questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
-                this.setSize (908, 658);
+                this.setSize(908, 675);
             }
         }
 
