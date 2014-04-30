@@ -63,8 +63,8 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
 
         try { //Imports image for the screen
-            mainScreen = ImageIO.read(this.getClass().getResource("main_screen.jpg"));
-            toolBar = ImageIO.read (this.getClass ().getResource ("icon.jpg"));
+            mainScreen = ImageIO.read(this.getClass().getResource("images/main_screen.jpg"));
+            toolBar = ImageIO.read (this.getClass ().getResource ("images/icon.jpg"));
         } catch (IOException e) {
         }
 

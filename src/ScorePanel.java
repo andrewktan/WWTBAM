@@ -15,7 +15,7 @@ public class ScorePanel extends JPanel {
     public void paintComponent (Graphics g) { //Loads background
         super.paintComponent(g); //overrides original pain component
         try {
-            g.drawImage(ImageIO.read(getClass().getResource("money-tree.jpg")),
+            g.drawImage(ImageIO.read(getClass().getResource("images/money_tree.jpg")),
                     0, 0, null);
         } catch (IOException e) {
         }

@@ -55,8 +55,8 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
         this.add(prompt);
 
         try { //Imports image for the screen
-            screen = ImageIO.read(this.getClass().getResource("question_template.jpg"));
-            choiceBox = ImageIO.read(this.getClass().getResource("choice_box.jpg"));
+            screen = ImageIO.read(this.getClass().getResource("images/question_template.jpg"));
+            choiceBox = ImageIO.read(this.getClass().getResource("images/choice_box.jpg"));
         } catch (IOException e) {
         }
 
