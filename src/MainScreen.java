@@ -1,5 +1,4 @@
 import org.omg.CORBA.BAD_INV_ORDER;
-import sun.plugin2.message.GetAppletMessage;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -20,6 +19,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // objects for GUI
     private BufferedImage mainScreen, toolBar;
     private JPanel mainMenu = new JPanel();
+    private JPanel moneyTree = new ScorePanel();
     private JButton startBtn = new JButton("Start");
     private JButton instructionsBtn = new JButton("Instructions");
     private JButton quitBtn = new JButton("Quit");
@@ -43,56 +43,57 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     public MainScreen ()
     {
 
-    //Menus
-    menuBar.add(GameMENU);
-    menuBar.add(InstructionsMENU);
-    GameMENU.add(newGameITEM);
-    newGameITEM.addActionListener(this);
-    this.setJMenuBar(menuBar);
-    // read from file
-    questions = Question.readQuestionsFromFile ("questions.xml");
+        //Menus
+        menuBar.add(GameMENU);
+        menuBar.add(InstructionsMENU);
+        GameMENU.add(newGameITEM);
+        newGameITEM.addActionListener(this);
+        this.setJMenuBar(menuBar);
+        // read from file
+        questions = Question.readQuestionsFromFile ("questions.xml");
 
-	// SETUP GUI
-	setTitle ("Who Wants to Be a Millionaire?");
-	setSize (908, 658);
-	setDefaultLookAndFeelDecorated (true);
-    setResizable(false);
-	setLocationRelativeTo (null);
-	setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        // SETUP GUI
+        setTitle ("Who Wants to Be a Millionaire?");
+        setSize (908, 658);
+        setDefaultLookAndFeelDecorated (true);
+        setResizable(false);
+        setLocationRelativeTo (null);
+        setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        setLayout(null);
 
 
-     try { //Imports image for the screen
+        try { //Imports image for the screen
             mainScreen = ImageIO.read(this.getClass().getResource("main_screen.jpg"));
             toolBar = ImageIO.read (this.getClass ().getResource ("icon.jpg"));
-     } catch (IOException e) {
-     }
+        } catch (IOException e) {
+        }
 
-     this.setIconImage(toolBar);
-
-
-	// add ActionListeners
-	quitBtn.addActionListener (this);
-    startBtn.addActionListener(this);
-
-    //customize buttons
-
-    startBtn.setBackground(Color.WHITE);
-    instructionsBtn.setBackground(Color.WHITE);
-    quitBtn.setBackground(Color.WHITE);
+        this.setIconImage(toolBar);
 
 
-    // set up title image
-    JLabel title = new JLabel (new ImageIcon (mainScreen));
-    title.setPreferredSize (new Dimension (600, 620));
-    mainMenu.add(title, BorderLayout.WEST);
-    mainMenu.setBackground(Color.WHITE);
+        // add ActionListeners
+        quitBtn.addActionListener (this);
+        startBtn.addActionListener(this);
 
-    // populate JPanel
-    mainMenu.add (startBtn);
-    mainMenu.add (instructionsBtn);
-    mainMenu.add(quitBtn);
+        //customize buttons
 
-	this.setContentPane (mainMenu);
+        startBtn.setBackground(Color.WHITE);
+        instructionsBtn.setBackground(Color.WHITE);
+        quitBtn.setBackground(Color.WHITE);
+
+
+        // set up title image
+        JLabel title = new JLabel (new ImageIcon (mainScreen));
+        title.setPreferredSize (new Dimension (600, 620));
+        mainMenu.add(title, BorderLayout.WEST);
+        mainMenu.setBackground(Color.WHITE);
+
+        // populate JPanel
+        mainMenu.add (startBtn);
+        mainMenu.add (instructionsBtn);
+        mainMenu.add(quitBtn);
+
+        this.setContentPane (mainMenu);
     }
 
 
@@ -105,21 +106,25 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         }
 
         // randomly select question
-	    Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
+        Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
+        currentGameplay = new Gameplay (currentQuestion, this);
 
-	    currentGameplay = new Gameplay (currentQuestion, this);
+        // manage layout of screen
         setContentPane(currentGameplay);
+        add(moneyTree);
+        Insets insets = getInsets();
+        moneyTree.setBounds(899 + insets.left, 1, 250, 658); // place money tree
         pack();
-        setSize (1100, 675); //dimensions needed for the template picture of the questions/asnwers
+        setSize(900 + 250, 675); //dimensions needed for the template picture of the questions/answers/money-tree
     }
 
 
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
-	    if (e.getSource ().equals (quitBtn)) // quit button
+        if (e.getSource ().equals (quitBtn)) // quit button
         {
-	        dispose();
+            dispose();
         } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start ptbutton
             nextScreen();
         } else { // question attempted

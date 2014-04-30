@@ -99,7 +99,6 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
     }
 
     public void paintComponent (Graphics g) { //Loads background
-
         super.paintComponent(g); //overrides original pain component
         g.drawImage(screen,0,0,null);
     }
