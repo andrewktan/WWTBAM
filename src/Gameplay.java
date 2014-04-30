@@ -16,7 +16,7 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
     private BufferedImage choiceBox;
 
     // Status
-    private boolean correct;
+    private boolean correct, answered = false;
 
     //Four main choices buttons
     private JLabel prompt;
@@ -108,9 +108,12 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
         return correct;
     }
 
+    public boolean isAnswered() {return answered;}
+
 	// for ActionListener interface
 	public void actionPerformed (ActionEvent e)
 	{
+        answered = true;
         // check if correct
         if (choiceList.indexOf(e.getSource()) == this.currentQuestion.getCorrect())
             correct = true;

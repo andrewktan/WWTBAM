@@ -30,9 +30,10 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     private JMenuItem newGameITEM = new JMenuItem ("New Game");
     private JMenu InstructionsMENU = new JMenu ("Information");
 
-    // objects for gameplay
+    // objects for gameplay and confirmations
     private ArrayList< Question > questions;
     private Gameplay currentGameplay;
+    private Confirmation currentConfirmation;
 
     // scoring
     private int score = 1;
@@ -63,7 +64,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
      try { //Imports image for the screen
             mainScreen = ImageIO.read(this.getClass().getResource("main_screen.jpg"));
-            toolBar = ImageIO.read (this.getClass ().getResource ("icon.jpg"));
+            toolBar = ImageIO.read (this.getClass ().getResource ("dollar_sign.jpg"));
      } catch (IOException e) {
      }
 
@@ -120,10 +121,23 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 	    if (e.getSource ().equals (quitBtn)) // quit button
         {
 	        dispose();
-        } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start ptbutton
+        } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start button
             nextScreen();
-        } else { // question attempted
-            if (currentGameplay.isCorrect()) { // if correct
+        } else {
+            if (currentGameplay.isAnswered()) {
+
+                if (currentGameplay.isCorrect()) { // if correct
+                    nextScreen(); // display next question
+                    score *= 2; // increase score
+                    System.out.printf("Your score is %d.\n", score);
+                } else { // if incorrect
+                    score = 1; // reset score
+                    setContentPane(mainMenu); // return to main menu
+                    questions = Question.readQuestionsFromFile("questions.xml"); // reload questions
+                    this.setSize(908, 675);
+                }
+                // question attempted
+            /*if (currentGameplay.isCorrect()) { // if correct
                 nextScreen(); // display next question
                 score *= 2; // increase score
                 System.out.printf("Your score is %d.\n", score);
@@ -132,7 +146,9 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                 setContentPane(mainMenu); // return to main menu
                 questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
                 this.setSize(908, 675);
+            }*/
             }
+            setContentPane(mainMenu);
         }
 
     }
