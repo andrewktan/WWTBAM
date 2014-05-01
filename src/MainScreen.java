@@ -19,7 +19,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // objects for GUI
     private BufferedImage mainScreen, toolBar;
     private JPanel mainMenu = new JPanel();
-    private JPanel moneyTree = new ScorePanel();
+    private ScorePanel moneyTree = new ScorePanel();
     private JButton startBtn = new JButton("Start");
     private JButton instructionsBtn = new JButton("Instructions");
     private JButton quitBtn = new JButton("Quit");
@@ -33,10 +33,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // objects for gameplay and confirmations
     private ArrayList< Question > questions;
     private Gameplay currentGameplay;
-    private Confirmation currentConfirmation;
-
-    // scoring
-    private int score = 1;
+    //private Confirmation currentConfirmation;
 
     // create buttons
 
@@ -111,6 +108,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
         // manage layout of screen
         setContentPane(currentGameplay);
+        moneyTree.repaint();
         add(moneyTree);
         Insets insets = getInsets();
         moneyTree.setBounds(899 + insets.left, 1, 250, 658); // place money tree
@@ -124,14 +122,14 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     {
         if (e.getSource ().equals (quitBtn)) // quit button
         {
-	        dispose();
+            dispose();
         } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start button
             nextScreen();
         } else {
-            if (currentGameplay.isAnswered()) {
-                setContentPane(new Confirmation(this));
-                pack();
-                setSize(900 + 250, 675);
+            /*if (currentGameplay.isAnswered()) {
+                //setContentPane(new Confirmation(this));
+                //pack();
+                //setSize(900 + 250, 675);
                 if (currentGameplay.isCorrect()) { // if correct
                     nextScreen(); // display next question
                     score *= 2; // increase score
@@ -141,23 +139,22 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                     setContentPane(mainMenu); // return to main menu
                     questions = Question.readQuestionsFromFile("questions.xml"); // reload questions
                     this.setSize(908, 675);
-                }
-                // question attempted
-            /*if (currentGameplay.isCorrect()) { // if correct
+                }*/
+            // question attempted
+            if (currentGameplay.isCorrect()) { // if correct
                 nextScreen(); // display next question
-                score *= 2; // increase score
-                System.out.printf("Your score is %d.\n", score);
+                moneyTree.incrementScore(); // increase score
+                System.out.printf("Your score is: %d\n", moneyTree.getScore());
             } else { // if incorrect
-                score = 1; // reset score
+                moneyTree.resetScore(); // reset score
                 setContentPane(mainMenu); // return to main menu
                 questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
                 this.setSize(908, 675);
-            }*/
             }
-            setContentPane(mainMenu);
         }
-
+        // setContentPane(mainMenu);
     }
+
 
 
     // Method that must be implemented because of Window Listener, does nothing
