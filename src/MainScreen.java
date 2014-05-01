@@ -33,7 +33,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // objects for gameplay and confirmations
     private ArrayList< Question > questions;
     private Gameplay currentGameplay;
-    //private Confirmation currentConfirmation;
+    private Confirmation currentConfirmation;
 
     // scoring
     private int score = 1;
@@ -129,7 +129,9 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
             nextScreen();
         } else {
             if (currentGameplay.isAnswered()) {
-
+                setContentPane(new Confirmation(this));
+                pack();
+                setSize(900 + 250, 675);
                 if (currentGameplay.isCorrect()) { // if correct
                     nextScreen(); // display next question
                     score *= 2; // increase score

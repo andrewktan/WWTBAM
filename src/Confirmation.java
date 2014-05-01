@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
-public class Confirmation extends JPanel implements ActionListener, WindowListener
+public class Confirmation extends JPanel implements ActionListener
 {
     //prompt
     private JLabel prompt;
@@ -38,7 +38,7 @@ public class Confirmation extends JPanel implements ActionListener, WindowListen
        this.add(yesBTN);
        this.add(noBTN);
        this.add(prompt);
-
+       setVisible(true);
 
 
    }
@@ -60,45 +60,5 @@ public class Confirmation extends JPanel implements ActionListener, WindowListen
 
 
     }
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowDeactivated (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowDeiconified (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowIconified (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowOpened (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowClosed (WindowEvent e)
-    {
-    }
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowClosing (WindowEvent e)
-    {
-    }
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowActivated (WindowEvent e)
-    {
-    }
-
 
 }
