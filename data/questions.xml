@@ -43,6 +43,13 @@
         <answer>Smash Mouth</answer>
         <answer>Eiffel 65</answer>
     </question>
+    <question subject="tv" difficulty="2">
+    <prompt>What is Spider Man's real name?</prompt>
+    <answer correct="true">Peter Parker</answer>
+    <answer>Edward Brock</answer>
+    <answer>Tony Stark</answer>
+    <answer>Steve Rogers</answer>
+    </question>
     <!-- HISTORY -->
     <question subject="history" difficulty="8">
         <prompt>When did the American Revolutionary War start?</prompt>

@@ -13,6 +13,10 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowFocusListener;
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MainScreen extends JFrame implements ActionListener, WindowListener, WindowFocusListener
 {
@@ -33,7 +37,12 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // objects for gameplay and confirmations
     private ArrayList< Question > questions;
     private Gameplay currentGameplay;
-    //private Confirmation currentConfirmation;
+
+    //Confirmation
+    Object[] options = {"YES", "NO"};
+    Object[] options2 = {"CONTINUE", "WALKAWAY"};
+    int confirmation, decision;
+
 
     // create buttons
 
@@ -108,7 +117,6 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
         // manage layout of screen
         setContentPane(currentGameplay);
-        moneyTree.repaint();
         add(moneyTree);
         Insets insets = getInsets();
         moneyTree.setBounds(899 + insets.left, 1, 250, 658); // place money tree
@@ -125,21 +133,45 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
             dispose();
         } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start button
             nextScreen();
-        } else {
-            /*if (currentGameplay.isAnswered()) {
-                //setContentPane(new Confirmation(this));
-                //pack();
-                //setSize(900 + 250, 675);
-                if (currentGameplay.isCorrect()) { // if correct
-                    nextScreen(); // display next question
-                    score *= 2; // increase score
-                    System.out.printf("Your score is %d.\n", score);
-                } else { // if incorrect
-                    score = 1; // reset score
-                    setContentPane(mainMenu); // return to main menu
-                    questions = Question.readQuestionsFromFile("questions.xml"); // reload questions
-                    this.setSize(908, 675);
-                }*/
+        } else
+
+        {
+            if (currentGameplay.isAnswered()) {
+            confirmation = JOptionPane.showOptionDialog(this, "Is this your final answer?", "Confirm Choice",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+                if(confirmation == JOptionPane.YES_OPTION){
+
+                    if (currentGameplay.isCorrect()) { // if correct
+
+                        moneyTree.incrementScore(); // increase score
+                        moneyTree.repaint();
+
+                        decision = JOptionPane.showOptionDialog(this, "CONGRATULATIONS! YOU HAVE WON $" + moneyTree.getScore() + "\n\nWalk away with $" +moneyTree.getScore() +" or continue?", "CONGRATULATIONS!",
+                                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[1]);
+                        if (decision == JOptionPane.YES_OPTION) {
+
+                            nextScreen(); // display next question
+                            System.out.printf("Your score is: %d\n", moneyTree.getScore());
+                        }
+                        else{
+                            moneyTree.resetScore(); // reset score
+                            setContentPane(mainMenu); // return to main menu
+                            questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
+                            this.setSize(908, 675);
+                        }
+
+                    } else { // if incorrect
+                        moneyTree.resetScore(); // reset score
+                        setContentPane(mainMenu); // return to main menu
+                        questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
+                        this.setSize(908, 675);
+                    }
+
+                }
+        }
+        }
+
+        /*{
             // question attempted
             if (currentGameplay.isCorrect()) { // if correct
                 nextScreen(); // display next question
@@ -151,8 +183,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                 questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
                 this.setSize(908, 675);
             }
-        }
-        // setContentPane(mainMenu);
+        }*/
     }
 
 
