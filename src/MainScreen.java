@@ -43,6 +43,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     Object[] options2 = {"CONTINUE", "WALKAWAY"};
     int confirmation, decision;
 
+    private boolean fiftyFiftyUsed = false;
 
     // create buttons
 
@@ -119,7 +120,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         setContentPane(currentGameplay);
         add(moneyTree);
         Insets insets = getInsets();
-        moneyTree.setBounds(899 + insets.left, 1, 250, 658); // place money tree
+        moneyTree.setBounds(899 + insets.left, 1, 250, 650); // place money tree
         pack();
         setSize(900 + 250, 675); //dimensions needed for the template picture of the questions/answers/money-tree
     }
@@ -133,10 +134,19 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
             dispose();
         } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start button
             nextScreen();
+//<<<<<<< HEAD
         } else
 
         {
-            if (currentGameplay.isAnswered()) {
+            if (!currentGameplay.isAnswered()) { // if something else is pressed
+                if (true && !fiftyFiftyUsed) { // NEED TO CHECK IF 50/50 IS CHOSEN
+                    fiftyFiftyUsed = true;
+                    currentGameplay.fiftyFiftyLifeline(); // run lifeline
+                    currentGameplay.repaint();
+                }
+            }
+
+            else if (currentGameplay.isAnswered()) {
             confirmation = JOptionPane.showOptionDialog(this, "Is this your final answer?", "Confirm Choice",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
                 if(confirmation == JOptionPane.YES_OPTION){
@@ -173,6 +183,15 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
         /*{
             // question attempted
+=======
+        } else if (!currentGameplay.isAnswered()) { // if something else is pressed
+            if (true && !fiftyFiftyUsed) { // NEED TO CHECK IF 50/50 IS CHOSEN
+                fiftyFiftyUsed = true;
+                currentGameplay.fiftyFiftyLifeline(); // run lifeline
+                currentGameplay.repaint();
+            }
+        } else { // if answered
+>>>>>>> 2be48e74cbf390561fa6d19cfc5901c2e63b82cd
             if (currentGameplay.isCorrect()) { // if correct
                 nextScreen(); // display next question
                 moneyTree.incrementScore(); // increase score
@@ -183,9 +202,10 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                 questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
                 this.setSize(908, 675);
             }
+<<<<<<< HEAD
         }*/
-    }
-
+//=======
+        }
 
 
     // Method that must be implemented because of Window Listener, does nothing
@@ -241,9 +261,5 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     {
     }
 
-
-    public void main (String[] args)
-    {
-    }
 }
 

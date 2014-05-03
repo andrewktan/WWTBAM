@@ -1,16 +1,14 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class Gameplay extends JPanel implements ActionListener, WindowListener
-{
+public class Gameplay extends JPanel implements ActionListener {
     //Pics
     private BufferedImage screen;
     private BufferedImage choiceBox;
@@ -20,7 +18,8 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 
     //Four main choices buttons
     private JLabel prompt;
-    private ArrayList < JButton > choiceList = new ArrayList < JButton > ();
+    private ArrayList<JButton> choiceList = new ArrayList<JButton>();
+    private JButton fiftyFifty;
 
     //Visual for the question box
     private BufferedImage questionBox;
@@ -29,8 +28,8 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
     private String player;
 
     //Questions & Answers
-    private ArrayList < Question > questions;
-    private ArrayList < String > answers;
+    private ArrayList<Question> questions;
+    private ArrayList<String> answers;
     private Question currentQuestion;
 
     //Score
@@ -39,9 +38,9 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
 
     private ActionListener ae;
 
-	public Gameplay (Question currentQuestion, ActionListener ae) {
+    public Gameplay(Question currentQuestion, ActionListener ae) {
 
-       //this.setPreferredSize(new Dimension(800,800));
+        //this.setPreferredSize(new Dimension(800,800));
         this.currentQuestion = currentQuestion;
         this.ae = ae;
         answers = currentQuestion.getAnswers();
@@ -79,88 +78,81 @@ public class Gameplay extends JPanel implements ActionListener, WindowListener
         } catch (Exception e) {
         }
 
+        // initializing lifeline buttons
+        fiftyFifty = new JButton("FIFTY FIFTY");
+        fiftyFifty.addActionListener(this);
+        this.add(fiftyFifty);
 
+        // place buttons
         this.setLayout(null);
 
         Insets insets = this.getInsets();
         Dimension promptSize = prompt.getPreferredSize();
 
-        prompt.setBounds(110 + insets.left, 195 + insets.top, 680, 2*promptSize.height); //Prompt
+        prompt.setBounds(110 + insets.left, 195 + insets.top, 680, 2 * promptSize.height); //Prompt
 
-        //Top Two
+        // top two answers
         choiceList.get(0).setBounds(127 + insets.left, 425 + insets.top, 300, 75);
         choiceList.get(1).setBounds(459 + insets.left, 425 + insets.top, 300, 75);
 
-        //Bottom Two
+        // bottom two answer
         choiceList.get(2).setBounds(127 + insets.left, 517 + insets.top, 300, 75);
         choiceList.get(3).setBounds(459 + insets.left, 517 + insets.top, 300, 75);
 
+        // lifelines
+        fiftyFifty.setBounds(100, 100, 100, 30);
 
     }
 
-    public void paintComponent (Graphics g) { //Loads background
+    public void fiftyFiftyLifeline() {
+        // declare
+        int index, removed = 0, last = -1;
+        Random r = new Random(); // create random object
+
+        // select buttons to remove
+        while (removed < 2) { // repeat until 2 have been removed
+            index = r.nextInt(4);
+            if (index!=currentQuestion.getCorrect() && index!=last) { // don't remove the correct answer, don't repeat
+                remove(choiceList.get(index)); // remove button
+                last = index; // keep track of already removed button
+                removed++; // keep track of number removed
+            }
+        }
+    }
+
+    public void paintComponent(Graphics g) { //Loads background
         super.paintComponent(g); //overrides original pain component
-        g.drawImage(screen,0,0,null);
+        g.drawImage(screen, 0, 0, null);
     }
 
     public boolean isCorrect() {
         return correct;
     }
 
-    public boolean isAnswered() {return answered;}
-
-	// for ActionListener interface
-	public void actionPerformed (ActionEvent e)
-	{
-        answered = true;
-        // check if correct
-        if (choiceList.indexOf(e.getSource()) == this.currentQuestion.getCorrect())
-            correct = true;
-        else
-            correct = false;
-
-        // trigger MainScreen's ActionListener
-        ae.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
-	}
-
-	// Method that must be implemented because of Window Listener, does nothing
-	public void windowDeactivated (WindowEvent e)
-	{
-	}
-
-
-	// Method that must be implemented because of Window Listener, does nothing
-	public void windowDeiconified (WindowEvent e)
-	{
-	}
-
-
-	// Method that must be implemented because of Window Listener, does nothing
-	public void windowIconified (WindowEvent e)
-	{
-	}
-
-
-	// Method that must be implemented because of Window Listener, does nothing
-	public void windowOpened (WindowEvent e)
-	{
-	}
-
-
-	// Method that must be implemented because of Window Listener, does nothing
-	public void windowClosed (WindowEvent e)
-	{
-	}
-
-	// Method that must be implemented because of Window Listener, does nothing
-	public void windowClosing (WindowEvent e)
-	{
-	}
-
-	// Method that must be implemented because of Window Listener, does nothing
-	public void windowActivated (WindowEvent e)
-	{
-	}
+    public boolean isAnswered() {
+        return answered;
     }
+
+    // for ActionListener interface
+    public void actionPerformed(ActionEvent e) {
+        boolean f = false;
+
+        // check if user is answering question
+        for (JButton b : choiceList)
+            f = f || e.getSource().equals(b);
+
+        if (f) { // if it is an answer
+            answered = true;
+            if (choiceList.indexOf(e.getSource()) == this.currentQuestion.getCorrect())
+                correct = true;
+            else
+                correct = false;
+        }
+
+
+        // trigger MainScreen's ActionListener after flags are set
+        ae.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
+    }
+}
 
 
