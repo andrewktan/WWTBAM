@@ -33,6 +33,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     // objects for gameplay and confirmations
     private ArrayList< Question > questions;
     private Gameplay currentGameplay;
+    private boolean fiftyFiftyUsed = false;
     //private Confirmation currentConfirmation;
 
     // create buttons
@@ -111,7 +112,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         moneyTree.repaint();
         add(moneyTree);
         Insets insets = getInsets();
-        moneyTree.setBounds(899 + insets.left, 1, 250, 658); // place money tree
+        moneyTree.setBounds(899 + insets.left, 1, 250, 650); // place money tree
         pack();
         setSize(900 + 250, 675); //dimensions needed for the template picture of the questions/answers/money-tree
     }
@@ -125,22 +126,13 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
             dispose();
         } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start button
             nextScreen();
-        } else {
-            /*if (currentGameplay.isAnswered()) {
-                //setContentPane(new Confirmation(this));
-                //pack();
-                //setSize(900 + 250, 675);
-                if (currentGameplay.isCorrect()) { // if correct
-                    nextScreen(); // display next question
-                    score *= 2; // increase score
-                    System.out.printf("Your score is %d.\n", score);
-                } else { // if incorrect
-                    score = 1; // reset score
-                    setContentPane(mainMenu); // return to main menu
-                    questions = Question.readQuestionsFromFile("questions.xml"); // reload questions
-                    this.setSize(908, 675);
-                }*/
-            // question attempted
+        } else if (!currentGameplay.isAnswered()) { // if something else is pressed
+            if (true && !fiftyFiftyUsed) { // NEED TO CHECK IF 50/50 IS CHOSEN
+                fiftyFiftyUsed = true;
+                currentGameplay.fiftyFiftyLifeline(); // run lifeline
+                currentGameplay.repaint();
+            }
+        } else { // if answered
             if (currentGameplay.isCorrect()) { // if correct
                 nextScreen(); // display next question
                 moneyTree.incrementScore(); // increase score
@@ -152,10 +144,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                 this.setSize(908, 675);
             }
         }
-        // setContentPane(mainMenu);
     }
-
-
 
     // Method that must be implemented because of Window Listener, does nothing
     public void windowDeactivated (WindowEvent e)
@@ -210,9 +199,5 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     {
     }
 
-
-    public void main (String[] args)
-    {
-    }
 }
 
