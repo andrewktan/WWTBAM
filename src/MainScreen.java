@@ -114,7 +114,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
         // randomly select question
         Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
-        currentGameplay = new Gameplay (currentQuestion, this);
+        currentGameplay = new Gameplay (currentQuestion, this, fiftyFiftyUsed);
 
         // manage layout of screen
         setContentPane(currentGameplay);
@@ -125,6 +125,15 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         setSize(900 + 250, 675); //dimensions needed for the template picture of the questions/answers/money-tree
     }
 
+    public void reset()
+    {
+        moneyTree.resetScore(); // reset score
+        setContentPane(mainMenu); // return to main menu
+        questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
+        this.setSize(908, 675);
+        fiftyFiftyUsed = false;
+    }
+
 
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
@@ -132,10 +141,15 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         if (e.getSource ().equals (quitBtn)) // quit button
         {
             dispose();
-        } else if ((e.getSource().equals(startBtn)) || (e.getSource().equals(newGameITEM))) { // start button
+        } else if ((e.getSource().equals(startBtn))) { // start button
             nextScreen();
-//<<<<<<< HEAD
-        } else
+
+        } else if (e.getSource().equals(newGameITEM)){
+
+            reset();
+        }
+
+        else
 
         {
             if (!currentGameplay.isAnswered()) { // if something else is pressed
@@ -156,7 +170,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                         moneyTree.incrementScore(); // increase score
                         moneyTree.repaint();
 
-                        decision = JOptionPane.showOptionDialog(this, "CONGRATULATIONS! YOU HAVE WON $" + moneyTree.getScore() + "\n\nWalk away with $" +moneyTree.getScore() +" or continue?", "CONGRATULATIONS!",
+                        decision = JOptionPane.showOptionDialog(this, "CONGRATULATIONS! YOU HAVE WON $" + moneyTree.getScore() + "\n\n   Walk away with $" +moneyTree.getScore() +" or continue?", "CONGRATULATIONS!",
                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[1]);
                         if (decision == JOptionPane.YES_OPTION) {
 
@@ -164,48 +178,17 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
                             System.out.printf("Your score is: %d\n", moneyTree.getScore());
                         }
                         else{
-                            moneyTree.resetScore(); // reset score
-                            setContentPane(mainMenu); // return to main menu
-                            questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
-                            this.setSize(908, 675);
+                            reset();
                         }
 
                     } else { // if incorrect
-                        moneyTree.resetScore(); // reset score
-                        setContentPane(mainMenu); // return to main menu
-                        questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
-                        this.setSize(908, 675);
+                        reset();
                     }
 
                 }
         }
         }
-
-        /*{
-            // question attempted
-=======
-        } else if (!currentGameplay.isAnswered()) { // if something else is pressed
-            if (true && !fiftyFiftyUsed) { // NEED TO CHECK IF 50/50 IS CHOSEN
-                fiftyFiftyUsed = true;
-                currentGameplay.fiftyFiftyLifeline(); // run lifeline
-                currentGameplay.repaint();
-            }
-        } else { // if answered
->>>>>>> 2be48e74cbf390561fa6d19cfc5901c2e63b82cd
-            if (currentGameplay.isCorrect()) { // if correct
-                nextScreen(); // display next question
-                moneyTree.incrementScore(); // increase score
-                System.out.printf("Your score is: %d\n", moneyTree.getScore());
-            } else { // if incorrect
-                moneyTree.resetScore(); // reset score
-                setContentPane(mainMenu); // return to main menu
-                questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
-                this.setSize(908, 675);
-            }
-<<<<<<< HEAD
-        }*/
-//=======
-        }
+    }
 
 
     // Method that must be implemented because of Window Listener, does nothing

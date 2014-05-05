@@ -12,9 +12,10 @@ public class Gameplay extends JPanel implements ActionListener {
     //Pics
     private BufferedImage screen;
     private BufferedImage choiceBox;
+    private BufferedImage fiftyFiftyBTN;
 
     // Status
-    private boolean correct, answered = false;
+    private boolean correct, answered = false,fiftyFiftyCheck = false;
 
     //Four main choices buttons
     private JLabel prompt;
@@ -38,9 +39,10 @@ public class Gameplay extends JPanel implements ActionListener {
 
     private ActionListener ae;
 
-    public Gameplay(Question currentQuestion, ActionListener ae) {
+    public Gameplay(Question currentQuestion, ActionListener ae, boolean fiftyFiftyCheck) {
 
         //this.setPreferredSize(new Dimension(800,800));
+        this.fiftyFiftyCheck = fiftyFiftyCheck;
         this.currentQuestion = currentQuestion;
         this.ae = ae;
         answers = currentQuestion.getAnswers();
@@ -56,6 +58,8 @@ public class Gameplay extends JPanel implements ActionListener {
         try { //Imports image for the screen
             screen = ImageIO.read(this.getClass().getResource("images/question_template.jpg"));
             choiceBox = ImageIO.read(this.getClass().getResource("images/choice_box.jpg"));
+            fiftyFiftyBTN = ImageIO.read(this.getClass().getResource("images/50_50.jpg"));
+
         } catch (IOException e) {
         }
 
@@ -79,7 +83,11 @@ public class Gameplay extends JPanel implements ActionListener {
         }
 
         // initializing lifeline buttons
-        fiftyFifty = new JButton("FIFTY FIFTY");
+        fiftyFifty = new JButton("",  new ImageIcon(fiftyFiftyBTN));
+        fiftyFifty.setHorizontalTextPosition(SwingConstants.CENTER);
+        fiftyFifty.setBorder(BorderFactory.createEmptyBorder());
+        fiftyFifty.setContentAreaFilled(false);
+
         fiftyFifty.addActionListener(this);
         this.add(fiftyFifty);
 
@@ -100,7 +108,7 @@ public class Gameplay extends JPanel implements ActionListener {
         choiceList.get(3).setBounds(459 + insets.left, 517 + insets.top, 300, 75);
 
         // lifelines
-        fiftyFifty.setBounds(100, 100, 100, 30);
+        fiftyFifty.setBounds(300, 364, 75, 50);
 
     }
 
@@ -118,11 +126,22 @@ public class Gameplay extends JPanel implements ActionListener {
                 removed++; // keep track of number removed
             }
         }
+
+        fiftyFiftyCheck = true;
     }
 
     public void paintComponent(Graphics g) { //Loads background
         super.paintComponent(g); //overrides original pain component
+
         g.drawImage(screen, 0, 0, null);
+
+        if (fiftyFiftyCheck) { //First lifeline check
+            this.remove(fiftyFifty);
+            g.setColor(Color.black);
+            g.fillRect(300, 364, 75, 50);
+        }
+
+
     }
 
     public boolean isCorrect() {
