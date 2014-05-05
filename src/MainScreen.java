@@ -43,7 +43,8 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     Object[] options2 = {"CONTINUE", "WALKAWAY"};
     int confirmation, decision;
 
-    private boolean fiftyFiftyUsed = false;
+    private boolean fiftyFiftyUsed1 = false;
+    private boolean fiftyFiftyUsed2 = false;
 
     // create buttons
 
@@ -114,7 +115,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
         // randomly select question
         Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
-        currentGameplay = new Gameplay (currentQuestion, this, fiftyFiftyUsed);
+        currentGameplay = new Gameplay (currentQuestion, this, fiftyFiftyUsed1, fiftyFiftyUsed2);
 
         // manage layout of screen
         setContentPane(currentGameplay);
@@ -131,7 +132,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         setContentPane(mainMenu); // return to main menu
         questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
         this.setSize(908, 675);
-        fiftyFiftyUsed = false;
+        fiftyFiftyUsed1 = false;
     }
 
 
@@ -153,9 +154,15 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
 
         {
             if (!currentGameplay.isAnswered()) { // if something else is pressed
-                if (true && !fiftyFiftyUsed) { // NEED TO CHECK IF 50/50 IS CHOSEN
-                    fiftyFiftyUsed = true;
-                    currentGameplay.fiftyFiftyLifeline(); // run lifeline
+                if (true && !fiftyFiftyUsed1) { // NEED TO CHECK IF 50/50 ONE IS CHOSEN
+                    fiftyFiftyUsed1 = true;
+                    currentGameplay.fiftyFiftyLifeline(1); // run lifeline
+                    currentGameplay.repaint();
+                }
+
+                else if (true && !fiftyFiftyUsed2){
+                    fiftyFiftyUsed2 = true;
+                    currentGameplay.fiftyFiftyLifeline(2); // run lifeline
                     currentGameplay.repaint();
                 }
             }
