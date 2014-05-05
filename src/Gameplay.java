@@ -15,12 +15,13 @@ public class Gameplay extends JPanel implements ActionListener {
     private BufferedImage fiftyFiftyBTN;
 
     // Status
-    private boolean correct, answered = false,fiftyFiftyCheck = false;
+    private boolean correct, answered = false,fiftyFiftyCheckOne = false, fiftyFiftyCheckTwo = false;
 
     //Four main choices buttons
     private JLabel prompt;
     private ArrayList<JButton> choiceList = new ArrayList<JButton>();
-    private JButton fiftyFifty;
+    private JButton fiftyFiftyOne;
+    private JButton fiftyFiftyTwo;
 
     //Visual for the question box
     private BufferedImage questionBox;
@@ -39,10 +40,11 @@ public class Gameplay extends JPanel implements ActionListener {
 
     private ActionListener ae;
 
-    public Gameplay(Question currentQuestion, ActionListener ae, boolean fiftyFiftyCheck) {
+    public Gameplay(Question currentQuestion, ActionListener ae, boolean fiftyFiftyCheckOne, boolean fiftyFiftyCheckTwo) {
 
         //this.setPreferredSize(new Dimension(800,800));
-        this.fiftyFiftyCheck = fiftyFiftyCheck;
+        this.fiftyFiftyCheckOne = fiftyFiftyCheckOne;
+        this.fiftyFiftyCheckTwo = fiftyFiftyCheckTwo;
         this.currentQuestion = currentQuestion;
         this.ae = ae;
         answers = currentQuestion.getAnswers();
@@ -83,13 +85,25 @@ public class Gameplay extends JPanel implements ActionListener {
         }
 
         // initializing lifeline buttons
-        fiftyFifty = new JButton("",  new ImageIcon(fiftyFiftyBTN));
-        fiftyFifty.setHorizontalTextPosition(SwingConstants.CENTER);
-        fiftyFifty.setBorder(BorderFactory.createEmptyBorder());
-        fiftyFifty.setContentAreaFilled(false);
 
-        fiftyFifty.addActionListener(this);
-        this.add(fiftyFifty);
+        //First 5050
+        fiftyFiftyOne = new JButton("",  new ImageIcon(fiftyFiftyBTN));
+        fiftyFiftyOne.setHorizontalTextPosition(SwingConstants.CENTER);
+        fiftyFiftyOne.setBorder(BorderFactory.createEmptyBorder());
+        fiftyFiftyOne.setContentAreaFilled(false);
+
+        fiftyFiftyOne.addActionListener(this);
+        this.add(fiftyFiftyOne);
+
+       //Second 5050
+        fiftyFiftyTwo = new JButton("",  new ImageIcon(fiftyFiftyBTN));
+        fiftyFiftyTwo.setHorizontalTextPosition(SwingConstants.CENTER);
+        fiftyFiftyTwo.setBorder(BorderFactory.createEmptyBorder());
+        fiftyFiftyTwo.setContentAreaFilled(false);
+
+        fiftyFiftyTwo.addActionListener(this);
+        this.add(fiftyFiftyTwo);
+
 
         // place buttons
         this.setLayout(null);
@@ -108,11 +122,13 @@ public class Gameplay extends JPanel implements ActionListener {
         choiceList.get(3).setBounds(459 + insets.left, 517 + insets.top, 300, 75);
 
         // lifelines
-        fiftyFifty.setBounds(300, 364, 75, 50);
+        fiftyFiftyOne.setBounds(300, 364, 75, 50);
+        fiftyFiftyTwo.setBounds(192, 364, 75, 50);
 
     }
 
-    public void fiftyFiftyLifeline() {
+
+    public void fiftyFiftyLifeline(int x) {
         // declare
         int index, removed = 0, last = -1;
         Random r = new Random(); // create random object
@@ -127,7 +143,12 @@ public class Gameplay extends JPanel implements ActionListener {
             }
         }
 
-        fiftyFiftyCheck = true;
+        if (x == 1)
+            fiftyFiftyCheckOne= true;
+
+        else
+            fiftyFiftyCheckTwo = true;
+
     }
 
     public void paintComponent(Graphics g) { //Loads background
@@ -135,10 +156,16 @@ public class Gameplay extends JPanel implements ActionListener {
 
         g.drawImage(screen, 0, 0, null);
 
-        if (fiftyFiftyCheck) { //First lifeline check
-            this.remove(fiftyFifty);
+        if (fiftyFiftyCheckOne) { //First lifeline check
+            this.remove(fiftyFiftyOne);
             g.setColor(Color.black);
             g.fillRect(300, 364, 75, 50);
+        }
+
+       else if (fiftyFiftyCheckTwo) { //Second lifeline check
+            this.remove(fiftyFiftyTwo);
+            g.setColor(Color.black);
+            g.fillRect(192, 364, 75, 50);
         }
 
 
