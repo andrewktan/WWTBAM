@@ -65,7 +65,7 @@ public class Question {
                     answers.add(answer.getText());
 
                     // get correct
-                    if (answer.attribute("correct") != null)
+                    if (answer.attributeValue("correct").equals("true"))
                         correct = answers.size() - 1;
                 }
 
