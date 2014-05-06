@@ -26,6 +26,7 @@ public class MainScreen extends JFrame implements ActionListener
     private ScorePanel moneyTree = new ScorePanel();
     private JButton startBtn = new JButton("Start");
     private JButton instructionsBtn = new JButton("Instructions");
+    private JButton playAgainBtn = new JButton("Play Again");
     private JButton quitBtn = new JButton("Quit");
 
     //Menus
@@ -88,7 +89,7 @@ public class MainScreen extends JFrame implements ActionListener
         startBtn.setBackground(Color.WHITE);
         instructionsBtn.setBackground(Color.WHITE);
         quitBtn.setBackground(Color.WHITE);
-
+        playAgainBtn.setBackground(Color.WHITE);
 
         // set up title image
         JLabel title = new JLabel (new ImageIcon (mainScreen));
@@ -126,9 +127,54 @@ public class MainScreen extends JFrame implements ActionListener
         setSize(900 + 250, 675); //dimensions needed for the template picture of the questions/answers/money-tree
     }
 
+    public void displayEndScreen(boolean wrong) {
+        // create JComponents
+        int finalScore = (wrong) ? moneyTree.getCheckpointScore() : moneyTree.getScore();
+        JPanel end = new JPanel();
+        JLabel message = new JLabel("Game Over! You have earned ");
+        JLabel money = new JLabel(String.format("$%d", finalScore));
+
+        // set layout
+        GroupLayout layout = new GroupLayout(end);
+        end.setLayout(layout);
+
+        // format
+        end.setBackground(Color.BLACK);
+        message.setFont(new Font("Arial", Font.ROMAN_BASELINE, 40));
+        money.setFont(new Font("Arial", Font.ROMAN_BASELINE, 200));
+        message.setForeground(Color.WHITE);
+        money.setForeground(Color.YELLOW);
+
+        // layout
+        layout.setHorizontalGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addComponent(message)
+                        .addComponent(money)
+                        .addComponent(playAgainBtn)
+                ).addComponent(quitBtn)
+        );
+        
+        layout.setVerticalGroup(layout.createSequentialGroup()
+            .addComponent(message)
+            .addComponent(money)
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(playAgainBtn)
+                .addComponent(quitBtn)
+            )
+        );
+
+        // add ActionListeners
+        playAgainBtn.addActionListener(this);
+
+        // display
+        setContentPane(end);
+        this.setSize(908, 675);
+    }
+
     public void reset()
     {
         moneyTree.resetScore(); // reset score
+        mainMenu.add(quitBtn); // re-add button to mainMenu
         setContentPane(mainMenu); // return to main menu
         questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
         this.setSize(908, 675);
@@ -140,14 +186,11 @@ public class MainScreen extends JFrame implements ActionListener
     // For ActionListener interface
     public void actionPerformed (ActionEvent e)
     {
-        if (e.getSource ().equals (quitBtn)) // quit button
-        {
+        if (e.getSource ().equals (quitBtn)) { // quit button
             dispose();
-        } else if ((e.getSource().equals(startBtn))) { // start button
+        } else if (e.getSource().equals(startBtn)) { // start button
             nextScreen();
-
-        } else if (e.getSource().equals(newGameITEM)){
-
+        } else if (e.getSource().equals(newGameITEM) || e.getSource().equals(playAgainBtn)){
             reset();
         }
 
@@ -178,19 +221,19 @@ public class MainScreen extends JFrame implements ActionListener
                         moneyTree.incrementScore(); // increase score
                         moneyTree.repaint();
 
-                        decision = JOptionPane.showOptionDialog(this, "CONGRATULATIONS! YOU HAVE WON $" + moneyTree.getScore() + "\n\n   Walk away with $" +moneyTree.getScore() +" or continue?", "CONGRATULATIONS!",
+                        decision = JOptionPane.showOptionDialog(this, "CONGRATULATIONS! YOU HAVE WON $" +
+                                moneyTree.getScore() + "\n\n   Walk away with $" +
+                                moneyTree.getScore() +" or continue?", "CONGRATULATIONS!",
                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[1]);
-                        if (decision == JOptionPane.YES_OPTION) {
 
+                        if (decision == JOptionPane.YES_OPTION) { // if continue with game
                             nextScreen(); // display next question
-                            System.out.printf("Your score is: %d\n", moneyTree.getScore());
-                        }
-                        else{
-                            reset();
+                        } else {
+                            displayEndScreen(false);
                         }
 
                     } else { // if incorrect
-                        reset();
+                        displayEndScreen(true);
                     }
 
                 }

@@ -16,6 +16,10 @@ public class ScorePanel extends JPanel {
             7500, 10000, 15000, 25000, 50000,
             75000, 150000, 250000, 500000, 1000000};
 
+    protected int[] checkpoints = {0, 0, 0, 0, 0, 5,
+            5, 5, 5, 5, 10,
+            10, 10, 10, 10, 15};
+
     ScorePanel() {
         // set size
         setSize(250, 658);
@@ -46,5 +50,9 @@ public class ScorePanel extends JPanel {
 
     public void incrementScore() {
         scoreInd += 1;
+    }
+
+    public int getCheckpointScore() {
+        return scores[checkpoints[scoreInd]];
     }
 }
