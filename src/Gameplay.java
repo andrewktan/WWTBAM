@@ -198,6 +198,7 @@ public class Gameplay extends JPanel implements ActionListener {
 
     public void audiencePollLifeLine()
     {
+        // JFrame
         JFrame pollScreen = new JFrame();
 
         pollScreen.setSize (530,120);
@@ -208,27 +209,31 @@ public class Gameplay extends JPanel implements ActionListener {
         pollScreen.setTitle("Audience Poll");
 
         JPanel poll = new JPanel();
+        ArrayList<JLabel> labels = new ArrayList<JLabel>();
+        ArrayList<Integer> probs = new ArrayList<Integer>();
 
-        int a,b,c,d, subtotal,remaining,total = 100;
+        int subtotal,remaining,total = 100, numPolled = 0;
         ArrayList<String> ans = currentQuestion.getAnswers();
+        Random r = new Random();
 
-        a = (int)(Math.random() * 10 + 1); //ranges from 1 to 10 - LEAST ACCURATE
-        d = (int)(Math.random() * 25 + 70); //ranges from 70 to 95 - MOST ACCURATE
-        subtotal = a + d;
-        remaining = total - subtotal;
-        b = (int)(Math.random() * remaining + 0); //Not accurate
-        c = remaining - b; //Not accurate
+        for (int i=0; i<4; i++) { // loop over answers
+            // generate random integer with normal dist
+            probs.add((currentQuestion.isCorrect(i)) ?
+                    (int) (r.nextGaussian() * 100 + 600) : // if it is the correct answer
+                    (int) (r.nextGaussian() * 70 + 200)); // if it is a wrong answer
+            numPolled += probs.get(i); // add to total
+        }
 
-        JLabel testd = new JLabel(d + "% of the audience thinks the answer is " + ans.remove(currentQuestion.getCorrect()));
+        for (int i=0; i<4; i++) { // loop over answers
+            labels.add(new JLabel(
+                    String.format("%.1f%% of the audience thinks the answer is %s",
+                            (float)probs.get(i) / numPolled * 100,
+                            ans.get(i))
+            ));
+        }
 
-        JLabel testa= new JLabel(a + "% of the audience thinks the answer is " + ans.remove((int) (Math.random() * ans.size())));
-        JLabel testb = new JLabel(b + "% of the audience thinks the answer is " + ans.remove((int) (Math.random() * ans.size())));
-        JLabel testc= new JLabel(c+ "% of the audience thinks the answer is " + ans.remove((int) (Math.random() * ans.size())));
-
-        poll.add(testa, FlowLayout.LEFT);
-        poll.add(testb, FlowLayout.LEFT);
-        poll.add(testc, FlowLayout.LEFT);
-        poll.add(testd, FlowLayout.LEFT);
+        for (JLabel label: labels) // add all the labels
+            poll.add(label, FlowLayout.LEFT);
 
         pollScreen.setContentPane(poll);
 
