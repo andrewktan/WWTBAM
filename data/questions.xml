@@ -1,3 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE questions [
+    <!ELEMENT questions (question*)>
+    <!ELEMENT question (prompt, answer+)>
+    <!ELEMENT prompt (#PCDATA)>
+    <!ELEMENT answer (#PCDATA)>
+
+    <!ATTLIST question difficulty CDATA #REQUIRED>
+    <!ATTLIST question subject CDATA #REQUIRED>
+    <!ATTLIST answer correct CDATA "false">
+]>
+
 <questions>
     <!-- SCIENCE -->
     <question subject="science" difficulty="3">
