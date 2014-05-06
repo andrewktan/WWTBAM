@@ -144,9 +144,9 @@ public class Gameplay extends JPanel implements ActionListener {
         }
 
         if (x == 1)
-            fiftyFiftyCheckOne= true;
+            fiftyFiftyCheckOne = true;
 
-        else
+        else if (x == 2)
             fiftyFiftyCheckTwo = true;
 
     }
@@ -162,11 +162,12 @@ public class Gameplay extends JPanel implements ActionListener {
             g.fillRect(300, 364, 75, 50);
         }
 
-       else if (fiftyFiftyCheckTwo) { //Second lifeline check
+       if (fiftyFiftyCheckTwo) { //Second lifeline check
             this.remove(fiftyFiftyTwo);
             g.setColor(Color.black);
             g.fillRect(192, 364, 75, 50);
         }
+
 
 
     }
