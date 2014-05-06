@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class MainScreen extends JFrame implements ActionListener, WindowListener, WindowFocusListener
+public class MainScreen extends JFrame implements ActionListener
 {
     // objects for GUI
     private BufferedImage mainScreen, toolBar;
@@ -179,6 +179,7 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
         questions = Question.readQuestionsFromFile ("questions.xml"); // reload questions
         this.setSize(908, 675);
         fiftyFiftyUsed1 = false;
+        fiftyFiftyUsed2 = false;
     }
 
 
@@ -241,58 +242,6 @@ public class MainScreen extends JFrame implements ActionListener, WindowListener
     }
 
 
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowDeactivated (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowDeiconified (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowIconified (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowOpened (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowClosed (WindowEvent e)
-    {
-    }
-
-
-    // For WindowListener interface
-    public void windowClosing (WindowEvent e)
-    {
-    }
-
-
-    // Method that must be implemented because of Window Listener, does nothing
-    public void windowActivated (WindowEvent e)
-    {
-    }
-
-
-    // For WindowFocusListener interface
-    public void windowGainedFocus (WindowEvent e)
-    {
-    }
-
-
-    // For WindowFocusListener interface
-    public void windowLostFocus (WindowEvent e)
-    {
-    }
 
 }
 
