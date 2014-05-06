@@ -46,6 +46,7 @@ public class MainScreen extends JFrame implements ActionListener
 
     private boolean fiftyFiftyUsed1 = false;
     private boolean fiftyFiftyUsed2 = false;
+    private boolean audiencePollUsed = false;
 
     // create buttons
 
@@ -116,7 +117,7 @@ public class MainScreen extends JFrame implements ActionListener
 
         // randomly select question
         Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
-        currentGameplay = new Gameplay (currentQuestion, this, fiftyFiftyUsed1, fiftyFiftyUsed2);
+        currentGameplay = new Gameplay (currentQuestion, this, fiftyFiftyUsed1, fiftyFiftyUsed2, audiencePollUsed);
 
         // manage layout of screen
         setContentPane(currentGameplay);
@@ -131,7 +132,7 @@ public class MainScreen extends JFrame implements ActionListener
         // create JComponents
         int finalScore = (wrong) ? moneyTree.getCheckpointScore() : moneyTree.getScore();
         JPanel end = new JPanel();
-        JLabel message = new JLabel("Game Over! You have earned ");
+        JLabel message = new JLabel("Game Over! You Have Earned ");
         JLabel money = new JLabel(String.format("$%d", finalScore));
 
         // set layout
@@ -141,7 +142,7 @@ public class MainScreen extends JFrame implements ActionListener
         // format
         end.setBackground(Color.BLACK);
         message.setFont(new Font("Arial", Font.ROMAN_BASELINE, 40));
-        money.setFont(new Font("Arial", Font.ROMAN_BASELINE, 200));
+        money.setFont(new Font("Arial", Font.ROMAN_BASELINE, 210));
         message.setForeground(Color.WHITE);
         money.setForeground(Color.YELLOW);
 
@@ -168,7 +169,7 @@ public class MainScreen extends JFrame implements ActionListener
 
         // display
         setContentPane(end);
-        this.setSize(908, 675);
+        this.setSize(950, 675);
     }
 
     public void reset()
@@ -180,6 +181,7 @@ public class MainScreen extends JFrame implements ActionListener
         this.setSize(908, 675);
         fiftyFiftyUsed1 = false;
         fiftyFiftyUsed2 = false;
+        audiencePollUsed = false;
     }
 
 
@@ -198,15 +200,22 @@ public class MainScreen extends JFrame implements ActionListener
 
         {
             if (!currentGameplay.isAnswered()) { // if something else is pressed
-                if (true && !fiftyFiftyUsed1) { // NEED TO CHECK IF 50/50 ONE IS CHOSEN
+
+                if (currentGameplay.fiftyFiftyOnePressed()) {
                     fiftyFiftyUsed1 = true;
-                    currentGameplay.fiftyFiftyLifeline(1); // run lifeline
+                    currentGameplay.fiftyFiftyLifeline(1);
                     currentGameplay.repaint();
                 }
 
-                else if (true && !fiftyFiftyUsed2){
+                else if (currentGameplay.fiftyFiftyTwoPressed()) {
                     fiftyFiftyUsed2 = true;
-                    currentGameplay.fiftyFiftyLifeline(2); // run lifeline
+                    currentGameplay.fiftyFiftyLifeline(2);
+                    currentGameplay.repaint();
+                }
+
+                else if (currentGameplay.audiencePollPressed()){
+                    audiencePollUsed = true;
+                    currentGameplay.audiencePollLifeLine();
                     currentGameplay.repaint();
                 }
             }

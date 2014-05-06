@@ -13,15 +13,23 @@ public class Gameplay extends JPanel implements ActionListener {
     private BufferedImage screen;
     private BufferedImage choiceBox;
     private BufferedImage fiftyFiftyBTN;
+    private BufferedImage audiencePollBTN;
 
     // Status
-    private boolean correct, answered = false,fiftyFiftyCheckOne = false, fiftyFiftyCheckTwo = false;
+    private boolean correct, answered = false;
+    //5050
+    boolean fiftyFiftyCheckOne = false, fiftyFiftyCheckTwo = false, returnOne = false, returnTwo = false;
+    //audience poll
+    boolean audiencePollCheck = false, returnThree = false;
 
     //Four main choices buttons
     private JLabel prompt;
     private ArrayList<JButton> choiceList = new ArrayList<JButton>();
+
     private JButton fiftyFiftyOne;
     private JButton fiftyFiftyTwo;
+
+    private JButton audiencePoll;
 
     //Visual for the question box
     private BufferedImage questionBox;
@@ -40,11 +48,12 @@ public class Gameplay extends JPanel implements ActionListener {
 
     private ActionListener ae;
 
-    public Gameplay(Question currentQuestion, ActionListener ae, boolean fiftyFiftyCheckOne, boolean fiftyFiftyCheckTwo) {
+    public Gameplay(Question currentQuestion, ActionListener ae, boolean fiftyFiftyCheckOne, boolean fiftyFiftyCheckTwo, boolean audiencePollCheck) {
 
         //this.setPreferredSize(new Dimension(800,800));
         this.fiftyFiftyCheckOne = fiftyFiftyCheckOne;
         this.fiftyFiftyCheckTwo = fiftyFiftyCheckTwo;
+        this.audiencePollCheck = audiencePollCheck;
         this.currentQuestion = currentQuestion;
         this.ae = ae;
         answers = currentQuestion.getAnswers();
@@ -61,6 +70,7 @@ public class Gameplay extends JPanel implements ActionListener {
             screen = ImageIO.read(this.getClass().getResource("images/question_template.jpg"));
             choiceBox = ImageIO.read(this.getClass().getResource("images/choice_box.jpg"));
             fiftyFiftyBTN = ImageIO.read(this.getClass().getResource("images/50_50.jpg"));
+            audiencePollBTN = ImageIO.read(this.getClass().getResource("images/audience_poll.jpg"));
 
         } catch (IOException e) {
         }
@@ -104,6 +114,15 @@ public class Gameplay extends JPanel implements ActionListener {
         fiftyFiftyTwo.addActionListener(this);
         this.add(fiftyFiftyTwo);
 
+        //Audience poll
+        audiencePoll = new JButton("", new ImageIcon(audiencePollBTN));
+        audiencePoll.setHorizontalTextPosition(SwingConstants.CENTER);
+        audiencePoll.setBorder(BorderFactory.createEmptyBorder());
+        audiencePoll.setContentAreaFilled(false);
+
+        audiencePoll.addActionListener(this);
+        this.add(audiencePoll);
+
 
         // place buttons
         this.setLayout(null);
@@ -125,10 +144,36 @@ public class Gameplay extends JPanel implements ActionListener {
         fiftyFiftyOne.setBounds(300, 364, 75, 50);
         fiftyFiftyTwo.setBounds(192, 364, 75, 50);
 
+        audiencePoll.setBounds(510,364,75,50);
+
     }
 
+    public void paintComponent(Graphics g) { //Loads background
+        super.paintComponent(g); //overrides original pain component
 
-    public void fiftyFiftyLifeline(int x) {
+        g.drawImage(screen, 0, 0, null);
+
+        if (fiftyFiftyCheckOne) { //First lifeline check
+            this.remove(fiftyFiftyOne);
+            g.setColor(Color.black);
+            g.fillRect(300, 364, 75, 50);
+        }
+
+        if (fiftyFiftyCheckTwo) { //Second lifeline check
+            this.remove(fiftyFiftyTwo);
+            g.setColor(Color.black);
+            g.fillRect(192, 364, 75, 50);
+        }
+
+        if(audiencePollCheck){
+            this.remove(audiencePoll);
+            g.setColor(Color.black);
+            g.fillRect(510, 364, 75, 50);
+        }
+    }
+
+    public void fiftyFiftyLifeline(int x)
+    {
         // declare
         int index, removed = 0, last = -1;
         Random r = new Random(); // create random object
@@ -151,26 +196,52 @@ public class Gameplay extends JPanel implements ActionListener {
 
     }
 
-    public void paintComponent(Graphics g) { //Loads background
-        super.paintComponent(g); //overrides original pain component
+    public void audiencePollLifeLine()
+    {
+        JFrame pollScreen = new JFrame();
 
-        g.drawImage(screen, 0, 0, null);
+        pollScreen.setSize (530,120);
+        pollScreen.setLocationRelativeTo(null);
+        pollScreen.setDefaultLookAndFeelDecorated(true);
+        pollScreen.setResizable(false);
+        pollScreen.setVisible(true);
+        pollScreen.setTitle("Audience Poll");
 
-        if (fiftyFiftyCheckOne) { //First lifeline check
-            this.remove(fiftyFiftyOne);
-            g.setColor(Color.black);
-            g.fillRect(300, 364, 75, 50);
-        }
+        JPanel poll = new JPanel();
 
-       if (fiftyFiftyCheckTwo) { //Second lifeline check
-            this.remove(fiftyFiftyTwo);
-            g.setColor(Color.black);
-            g.fillRect(192, 364, 75, 50);
-        }
+        int a,b,c,d, subtotal,remaining,total = 100;
+        ArrayList<String> ans = currentQuestion.getAnswers();
 
+        a = (int)(Math.random() * 10 + 1); //ranges from 1 to 10 - LEAST ACCURATE
+        d = (int)(Math.random() * 25 + 70); //ranges from 70 to 95 - MOST ACCURATE
+        subtotal = a + d;
+        remaining = total - subtotal;
+        b = (int)(Math.random() * remaining + 0); //Not accurate
+        c = remaining - b; //Not accurate
+
+        JLabel testd = new JLabel(d + "% of the audience thinks the answer is " + ans.remove(currentQuestion.getCorrect()));
+
+        JLabel testa= new JLabel(a + "% of the audience thinks the answer is " + ans.remove((int) (Math.random() * ans.size())));
+        JLabel testb = new JLabel(b + "% of the audience thinks the answer is " + ans.remove((int) (Math.random() * ans.size())));
+        JLabel testc= new JLabel(c+ "% of the audience thinks the answer is " + ans.remove((int) (Math.random() * ans.size())));
+
+        poll.add(testa, FlowLayout.LEFT);
+        poll.add(testb, FlowLayout.LEFT);
+        poll.add(testc, FlowLayout.LEFT);
+        poll.add(testd, FlowLayout.LEFT);
+
+        pollScreen.setContentPane(poll);
+
+        audiencePollCheck = true;
 
 
     }
+
+    public boolean fiftyFiftyOnePressed() {return returnOne;}
+
+    public boolean fiftyFiftyTwoPressed() {return returnTwo;}
+
+    public boolean audiencePollPressed() {return returnThree;}
 
     public boolean isCorrect() {
         return correct;
@@ -196,6 +267,13 @@ public class Gameplay extends JPanel implements ActionListener {
                 correct = false;
         }
 
+        if (e.getSource().equals(fiftyFiftyOne))
+            returnOne = true;
+
+        if (e.getSource().equals(fiftyFiftyTwo))
+            returnTwo = true;
+        if(e.getSource().equals(audiencePoll))
+            returnThree = true;
 
         // trigger MainScreen's ActionListener after flags are set
         ae.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
