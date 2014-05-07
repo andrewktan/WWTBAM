@@ -44,6 +44,10 @@ public class ScorePanel extends JPanel {
         return scores[scoreInd];
     }
 
+    public int getIndex() {
+        return scoreInd;
+    }
+
     public void resetScore() {
         scoreInd = 0;
     }

@@ -220,7 +220,7 @@ public class Gameplay extends JPanel implements ActionListener {
             // generate random integer with normal dist
             probs.add((currentQuestion.isCorrect(i)) ?
                     (int) (r.nextGaussian() * 100 + 600) : // if it is the correct answer
-                    (int) (r.nextGaussian() * 70 + 200)); // if it is a wrong answer
+                    (int) (r.nextGaussian() * 70 + 220)); // if it is a wrong answer
             numPolled += probs.get(i); // add to total
         }
 

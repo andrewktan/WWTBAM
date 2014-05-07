@@ -108,8 +108,20 @@ public class MainScreen extends JFrame implements ActionListener {
             return;
         }
 
-        // randomly select question
-        Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
+        // randomly select question paying attention to difficulty
+        int qInd, ceil, floor;
+        Question currentQuestion = null;
+        do {
+            qInd = (int) (Math.random() * questions.size()); // generate random index
+            // create min&max difficulties based on question number
+            ceil =  (int) ((float) moneyTree.getIndex() * 10 / 15) + 4;
+            floor = ceil - 5;
+            // if difficulty within range
+            if (questions.get(qInd).getDifficulty() >= floor && questions.get(qInd).getDifficulty() <= ceil)
+                currentQuestion = questions.remove(qInd); // set current question
+        } while (currentQuestion == null); // continue until suitable question is found
+
+        // create gameplay object
         currentGameplay = new Gameplay(currentQuestion, this, fiftyFiftyUsed1, fiftyFiftyUsed2, audiencePollUsed);
 
         // manage layout of screen
