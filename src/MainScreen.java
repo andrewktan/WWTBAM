@@ -23,6 +23,7 @@ public class MainScreen extends JFrame implements ActionListener {
     Object[] options = {"YES", "NO"};
     Object[] options2 = {"CONTINUE", "WALKAWAY"};
     int confirmation, decision;
+
     // objects for GUI
     private BufferedImage mainScreen, toolBar;
     private JPanel mainMenu = new JPanel();
@@ -31,19 +32,23 @@ public class MainScreen extends JFrame implements ActionListener {
     private JButton instructionsBtn = new JButton("Instructions");
     private JButton playAgainBtn = new JButton("Play Again");
     private JButton quitBtn = new JButton("Quit");
+
     //Menus
     private JMenuBar menuBar = new JMenuBar();
     private JMenu GameMENU = new JMenu("Game");
     private JMenuItem newGameITEM = new JMenuItem("New Game");
     private JMenu InstructionsMENU = new JMenu("Information");
+
     // objects for gameplay and confirmations
     private ArrayList<Question> questions;
     private Gameplay currentGameplay;
     private boolean fiftyFiftyUsed1 = false;
     private boolean fiftyFiftyUsed2 = false;
-    private boolean audiencePollUsed = false;
+    private boolean audiencePollUsed1 = false;
+    private boolean audiencePollUsed2 = false;
 
-    // create buttons
+    //
+    private boolean answered;
 
 
     public MainScreen() {
@@ -115,7 +120,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
         // randomly select question
         Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
-        currentGameplay = new Gameplay(currentQuestion, this, fiftyFiftyUsed1, fiftyFiftyUsed2, audiencePollUsed);
+        currentGameplay = new Gameplay(currentQuestion, this, fiftyFiftyUsed1, fiftyFiftyUsed2, audiencePollUsed1, audiencePollUsed2);
 
         // manage layout of screen
         setContentPane(currentGameplay);
@@ -126,7 +131,7 @@ public class MainScreen extends JFrame implements ActionListener {
         setSize(900 + 250, 675); //dimensions needed for the template picture of the questions/answers/money-tree
     }
 
-    public void displayEndScreen(boolean wrong) {
+    public void displayEndScreen(boolean wrong) { //end screen message once the user wins or loses
         // create JComponents
         int finalScore = (wrong) ? moneyTree.getCheckpointScore() : moneyTree.getScore();
         JPanel end = new JPanel();
@@ -145,6 +150,7 @@ public class MainScreen extends JFrame implements ActionListener {
         end.setLayout(null);
 
 
+        //adds buttons to the screen
         end.add(message);
         end.add(money);
         end.add(playAgainBtn);
@@ -166,20 +172,48 @@ public class MainScreen extends JFrame implements ActionListener {
         this.setSize(950, 675);
     }
 
-    public void reset() {
+    public void reset() { //resets the score and screen
         moneyTree.resetScore(); // reset score
         mainMenu.add(quitBtn); // re-add button to mainMenu
         setContentPane(mainMenu); // return to main menu
         questions = Question.readQuestionsFromFile("questions.xml"); // reload questions
         this.setSize(908, 675);
+
+        //resets all lifelines
         fiftyFiftyUsed1 = false;
         fiftyFiftyUsed2 = false;
-        audiencePollUsed = false;
+        audiencePollUsed1 = false;
+        audiencePollUsed2 = false;
+    }
+
+    public void lifeLinePressed () //which life line has been used
+    {
+        //Checks which lifeline has been used and calls the specfic method and repaints the screen to display it being used
+        if (currentGameplay.fiftyFiftyOnePressed()) {
+            fiftyFiftyUsed1 = true;
+            currentGameplay.fiftyFiftyLifeline(1);
+            currentGameplay.repaint();
+        }
+        if (currentGameplay.fiftyFiftyTwoPressed()) {
+            fiftyFiftyUsed2 = true;
+            currentGameplay.fiftyFiftyLifeline(2);
+            currentGameplay.repaint();
+        }
+        if (currentGameplay.audiencePollOnePressed()) {
+            audiencePollUsed1 = true;
+            currentGameplay.audiencePollLifeLine(1);
+            currentGameplay.repaint();
+        }
+        if (currentGameplay.audiencePollTwoPressed()) {
+            audiencePollUsed2 = true;
+            currentGameplay.audiencePollLifeLine(2);
+            currentGameplay.repaint();
+        }
     }
 
 
     // For ActionListener interface
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { //most important method of the game
         if (e.getSource().equals(quitBtn)) { // quit button
             dispose();
         } else if (e.getSource().equals(startBtn)) { // start button
@@ -189,41 +223,37 @@ public class MainScreen extends JFrame implements ActionListener {
         } else {
             if (!currentGameplay.isAnswered()) { // if something else is pressed
 
-                if (currentGameplay.fiftyFiftyOnePressed()) {
-                    fiftyFiftyUsed1 = true;
-                    currentGameplay.fiftyFiftyLifeline(1);
-                    currentGameplay.repaint();
-                }
-                if (currentGameplay.fiftyFiftyTwoPressed()) {
-                    fiftyFiftyUsed2 = true;
-                    currentGameplay.fiftyFiftyLifeline(2);
-                    currentGameplay.repaint();
-                }
-                else if (currentGameplay.audiencePollPressed()) {
-                    audiencePollUsed = true;
-                    currentGameplay.audiencePollLifeLine();
-                    currentGameplay.repaint();
-                }
-            } else if (currentGameplay.isAnswered()) {
-                confirmation = JOptionPane.showOptionDialog(this, "Is this your final answer?", "Confirm Choice",
+                lifeLinePressed();
+
+            } else if (currentGameplay.isAnswered()) { //else if an answer has been selected
+                //Confirmation pop up window
+
+                /*confirmation = JOptionPane.showOptionDialog(this, "Is this your final answer?", "Confirm Choice",
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-                if (confirmation == JOptionPane.YES_OPTION) {
+
+                if (confirmation == JOptionPane.YES_OPTION)*/ {
 
                     if (currentGameplay.isCorrect()) { // if correct
 
                         moneyTree.incrementScore(); // increase score
                         moneyTree.repaint();
 
+                        //decision pop up window
                         decision = JOptionPane.showOptionDialog(this, "CONGRATULATIONS! YOU HAVE WON $" +
                                 moneyTree.getScore() + "\n\n   Walk away with $" +
                                 moneyTree.getScore() + " or continue?", "CONGRATULATIONS!",
                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[1]);
 
                         if (decision == JOptionPane.YES_OPTION) { // if continue with game
-                            if(moneyTree.getScore() == 1000000)
+
+                            if(moneyTree.getScore() == 1000000) //if user wins
+
                             displayEndScreen(false);
+
                             else
+
                             nextScreen(); // display next question
+
                         } else{
                             displayEndScreen(false);
                         }

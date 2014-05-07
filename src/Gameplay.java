@@ -20,7 +20,7 @@ public class Gameplay extends JPanel implements ActionListener {
     //5050
     boolean fiftyFiftyCheckOne = false, fiftyFiftyCheckTwo = false, returnOne = false, returnTwo = false;
     //audience poll
-    boolean audiencePollCheck = false, returnThree = false;
+    boolean audiencePollCheck1 = false, audiencePollCheck2 = false, returnThree = false, returnFour = false;
 
     //Four main choices buttons
     private JLabel prompt;
@@ -29,7 +29,8 @@ public class Gameplay extends JPanel implements ActionListener {
     private JButton fiftyFiftyOne;
     private JButton fiftyFiftyTwo;
 
-    private JButton audiencePoll;
+    private JButton audiencePollOne;
+    private JButton audiencePollTwo;
 
     //Visual for the question box
     private BufferedImage questionBox;
@@ -44,16 +45,22 @@ public class Gameplay extends JPanel implements ActionListener {
 
     //Score
     private int score;
+    int confirmation;
 
 
     private ActionListener ae;
 
-    public Gameplay(Question currentQuestion, ActionListener ae, boolean fiftyFiftyCheckOne, boolean fiftyFiftyCheckTwo, boolean audiencePollCheck) {
+    Object[] options = {"YES", "NO"};
+
+    //Gameplay constructor reads in a read question and lifeline boolean checks
+    public Gameplay(Question currentQuestion, ActionListener ae, boolean fiftyFiftyCheckOne, boolean fiftyFiftyCheckTwo, boolean audiencePollCheck1, boolean audiencePollCheck2) {
+
 
         //this.setPreferredSize(new Dimension(800,800));
         this.fiftyFiftyCheckOne = fiftyFiftyCheckOne;
         this.fiftyFiftyCheckTwo = fiftyFiftyCheckTwo;
-        this.audiencePollCheck = audiencePollCheck;
+        this.audiencePollCheck1 = audiencePollCheck1;
+        this.audiencePollCheck2 = audiencePollCheck2;
         this.currentQuestion = currentQuestion;
         this.ae = ae;
         answers = currentQuestion.getAnswers();
@@ -114,14 +121,23 @@ public class Gameplay extends JPanel implements ActionListener {
         fiftyFiftyTwo.addActionListener(this);
         this.add(fiftyFiftyTwo);
 
-        //Audience poll
-        audiencePoll = new JButton("", new ImageIcon(audiencePollBTN));
-        audiencePoll.setHorizontalTextPosition(SwingConstants.CENTER);
-        audiencePoll.setBorder(BorderFactory.createEmptyBorder());
-        audiencePoll.setContentAreaFilled(false);
+        //First Audience poll
+        audiencePollOne = new JButton("", new ImageIcon(audiencePollBTN));
+        audiencePollOne.setHorizontalTextPosition(SwingConstants.CENTER);
+        audiencePollOne.setBorder(BorderFactory.createEmptyBorder());
+        audiencePollOne.setContentAreaFilled(false);
 
-        audiencePoll.addActionListener(this);
-        this.add(audiencePoll);
+        audiencePollOne.addActionListener(this);
+        this.add(audiencePollOne);
+
+        //Second Audience poll
+        audiencePollTwo = new JButton("", new ImageIcon(audiencePollBTN));
+        audiencePollTwo.setHorizontalTextPosition(SwingConstants.CENTER);
+        audiencePollTwo.setBorder(BorderFactory.createEmptyBorder());
+        audiencePollTwo.setContentAreaFilled(false);
+
+        audiencePollTwo.addActionListener(this);
+        this.add(audiencePollTwo);
 
 
         // place buttons
@@ -142,9 +158,10 @@ public class Gameplay extends JPanel implements ActionListener {
 
         // lifelines
         fiftyFiftyOne.setBounds(300, 364, 75, 50);
-        fiftyFiftyTwo.setBounds(192, 364, 75, 50);
+        fiftyFiftyTwo.setBounds(195, 364, 75, 50);
 
-        audiencePoll.setBounds(510,364,75,50);
+        audiencePollOne.setBounds(510,364,75,50);
+        audiencePollTwo.setBounds(618,364,75,50);
 
     }
 
@@ -152,6 +169,8 @@ public class Gameplay extends JPanel implements ActionListener {
         super.paintComponent(g); //overrides original pain component
 
         g.drawImage(screen, 0, 0, null);
+
+        //Redraws the screen with or without lifelines based on if they have been used
 
         if (fiftyFiftyCheckOne) { //First lifeline check
             this.remove(fiftyFiftyOne);
@@ -162,14 +181,22 @@ public class Gameplay extends JPanel implements ActionListener {
         if (fiftyFiftyCheckTwo) { //Second lifeline check
             this.remove(fiftyFiftyTwo);
             g.setColor(Color.black);
-            g.fillRect(192, 364, 75, 50);
+            g.fillRect(195, 364, 75, 50);
         }
 
-        if(audiencePollCheck){
-            this.remove(audiencePoll);
+        if(audiencePollCheck1){ //First audience poll
+            this.remove(audiencePollOne);
             g.setColor(Color.black);
             g.fillRect(510, 364, 75, 50);
         }
+
+        if(audiencePollCheck2){ //Second audience poll
+            this.remove(audiencePollTwo);
+            g.setColor(Color.black);
+            g.fillRect(618,364,75,50);
+        }
+
+
     }
 
     public void fiftyFiftyLifeline(int x)
@@ -188,6 +215,8 @@ public class Gameplay extends JPanel implements ActionListener {
             }
         }
 
+
+        //checks which lifeline has been used
         if (x == 1)
             fiftyFiftyCheckOne = true;
 
@@ -196,11 +225,12 @@ public class Gameplay extends JPanel implements ActionListener {
 
     }
 
-    public void audiencePollLifeLine()
+    public void audiencePollLifeLine(int x)
     {
         // JFrame
         JFrame pollScreen = new JFrame();
 
+        //Makes a pop up screen for audience poll to open up
         pollScreen.setSize (530,120);
         pollScreen.setLocationRelativeTo(null);
         pollScreen.setDefaultLookAndFeelDecorated(true);
@@ -209,6 +239,8 @@ public class Gameplay extends JPanel implements ActionListener {
         pollScreen.setTitle("Audience Poll");
 
         JPanel poll = new JPanel();
+
+        //makes labels and probability integers
         ArrayList<JLabel> labels = new ArrayList<JLabel>();
         ArrayList<Integer> probs = new ArrayList<Integer>();
 
@@ -227,7 +259,7 @@ public class Gameplay extends JPanel implements ActionListener {
         for (int i=0; i<4; i++) { // loop over answers
             labels.add(new JLabel(
                     String.format("%.1f%% of the audience thinks the answer is %s",
-                            (float)probs.get(i) / numPolled * 100,
+                            (float)probs.get(i) / numPolled * 100, //displays the probability in percent
                             ans.get(i))
             ));
         }
@@ -237,24 +269,31 @@ public class Gameplay extends JPanel implements ActionListener {
 
         pollScreen.setContentPane(poll);
 
-        audiencePollCheck = true;
+        //checks which number of audience poll has been used
+        if (x == 1)
+            audiencePollCheck1 = true;
+
+        else if (x == 2)
+            audiencePollCheck2 = true;
 
 
     }
 
-    public boolean fiftyFiftyOnePressed() {return returnOne;}
+    public boolean fiftyFiftyOnePressed() {return returnOne;} //check if fifty fifty one has been pressed. communicates with mainscreen
 
-    public boolean fiftyFiftyTwoPressed() {return returnTwo;}
+    public boolean fiftyFiftyTwoPressed() {return returnTwo;} //check if fifty fifty two has been pressed. communicates with mainscreen
 
-    public boolean audiencePollPressed() {return returnThree;}
+    public boolean audiencePollOnePressed() {return returnThree;} //check if audience poll one has been pressed. communicates with mainscreen
+
+    public boolean audiencePollTwoPressed() {return returnFour;} //check if audience poll two has been pressed. communicates with mainscreen
 
     public boolean isCorrect() {
         return correct;
-    }
+    } //checks for correct answer
 
     public boolean isAnswered() {
         return answered;
-    }
+    } //checks for any answer
 
     // for ActionListener interface
     public void actionPerformed(ActionEvent e) {
@@ -265,7 +304,13 @@ public class Gameplay extends JPanel implements ActionListener {
             f = f || e.getSource().equals(b);
 
         if (f) { // if it is an answer
-            answered = true;
+
+            confirmation = JOptionPane.showOptionDialog(this, "Is this your final answer?", "Confirm Choice",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+            if (confirmation == JOptionPane.YES_OPTION)
+                answered = true;
+
             if (choiceList.indexOf(e.getSource()) == this.currentQuestion.getCorrect())
                 correct = true;
             else
@@ -277,8 +322,10 @@ public class Gameplay extends JPanel implements ActionListener {
 
         if (e.getSource().equals(fiftyFiftyTwo))
             returnTwo = true;
-        if(e.getSource().equals(audiencePoll))
+        if(e.getSource().equals(audiencePollOne))
             returnThree = true;
+        if(e.getSource().equals(audiencePollTwo))
+            returnFour = true;
 
         // trigger MainScreen's ActionListener after flags are set
         ae.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
