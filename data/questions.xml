@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE questions [
-    <!ELEMENT questions (question*)>
-    <!ELEMENT question (prompt, answer+)>
-    <!ELEMENT prompt (#PCDATA)>
-    <!ELEMENT answer (#PCDATA)>
+        <!ELEMENT questions (question*)>
+        <!ELEMENT question (prompt, answer+)>
+        <!ELEMENT prompt (#PCDATA)>
+        <!ELEMENT answer (#PCDATA)>
 
-    <!ATTLIST question difficulty CDATA #REQUIRED>
-    <!ATTLIST question subject CDATA #REQUIRED>
-    <!ATTLIST answer correct CDATA "false">
-]>
+        <!ATTLIST question difficulty CDATA #REQUIRED>
+        <!ATTLIST question subject CDATA #REQUIRED>
+        <!ATTLIST answer correct CDATA "false">
+        ]>
 
 <questions>
     <!-- SCIENCE -->
@@ -26,6 +26,7 @@
         <answer correct="true">Tungsten</answer>
         <answer>Iron</answer>
     </question>
+<<<<<<< HEAD
     <question subject="science" difficulty="5">
     <prompt>Which scientist has won two Nobel prizes?</prompt>
          <answer correct="true">Marie Curie</answer>
@@ -58,6 +59,11 @@
         <prompt>Who coined the term Plasma in 1928?</prompt>
         <answer correct="true">Irving Langmuir</answer>
         <answer>William Crookes</answer>
+=======
+    <question subject="science" difficulty="6">
+        <prompt>Which scientist has won two Nobel prizes?</prompt>
+        <answer correct="true">Marie Curie</answer>
+>>>>>>> 4cad5040889f5c5bd482d58282b31db46f34a0d8
         <answer>Albert Einstein</answer>
         <answer>Eric Cornell</answer>
     </question>
@@ -103,6 +109,7 @@
         <answer>John Dalton</answer>
         <answer>Ernest Rutherford</answer>
     </question>
+<<<<<<< HEAD
     <question subject="science" difficulty="3">
         <prompt>Italian artist and intellectual Leonardo da Vinci lived during what period?</prompt>
         <answer correct="true">Renaissance</answer>
@@ -133,6 +140,79 @@
     </question>
 
     <!-- TV and MOVIES -->
+=======
+    <question subject="science" difficulty="6">
+        <prompt>What species of animal was the first to orbit the Earth?</prompt>
+        <answer correct="true">Dog</answer>
+        <answer>Chimpanzee</answer>
+        <answer>Human</answer>
+        <answer>Cat</answer>
+    </question>
+    <question subject="science" difficulty="4">
+        <prompt>Which letter does not appear on the periodic table?</prompt>
+        <answer correct="true">J</answer>
+        <answer>Y</answer>
+        <answer>X</answer>
+        <answer>W</answer>
+    </question>
+    <question subject="science" difficulty="6">
+        <prompt>How many quarks are there?</prompt>
+        <answer correct="true">6</answer>
+        <answer>3</answer>
+        <answer>4</answer>
+        <answer>2</answer>
+    </question>
+    <question subject="science" difficulty="10">
+        <prompt>Which scientist has won both a Nobel and Ig Nobel prize?</prompt>
+        <answer correct="true">Andre Geim</answer>
+        <answer>Marie Curie</answer>
+        <answer>Jack Szostak</answer>
+        <answer>Peter Higgs</answer>
+    </question>
+    <question subject="science" difficulty="4">
+        <prompt>What is the process in which a gas turns into a solid?</prompt>
+        <answer correct="true">Deposition</answer>
+        <answer>Sublimation</answer>
+        <answer>Evaporation</answer>
+        <answer>Condensation</answer>
+    </question>
+    <question subject="science" difficulty="6">
+        <prompt>What is the temperature and pressure at which gas, liquid, and solid states coexist?</prompt>
+        <answer correct="true">Triple Point</answer>
+        <answer>Equilibrium Point</answer>
+        <answer>GLS Point</answer>
+        <answer>Standard Temperature and Pressure</answer>
+    </question>
+    <question subject="science" difficulty="5">
+        <prompt>What is another way to describe an alpha particle?</prompt>
+        <answer correct="true">Helium Nuclei</answer>
+        <answer>Proton</answer>
+        <answer>Deuterium Nuclei</answer>
+        <answer>Electron</answer>
+    </question>
+    <question subject="science" difficulty="6">
+        <prompt>Which of the following isotopes cannot sustain a fission reaction?</prompt>
+        <answer correct="true">Uranium-238</answer>
+        <answer>Uranium-235</answer>
+        <answer>Thorium-232</answer>
+        <answer>Plutonium-241</answer>
+    </question>
+    <question subject="science" difficulty="8">
+        <prompt>Which effect explains the behaviour of a superconductor?</prompt>
+        <answer correct="true">Meissner Effect</answer>
+        <answer>Leidenfrost Effect</answer>
+        <answer>Butterfly Effect</answer>
+        <answer>Supercondutor Effect</answer>
+    </question>
+    <question subject="science" difficulty="7">
+        <prompt>What is the SI unit of conductance?</prompt>
+        <answer correct="true">Siemen</answer>
+        <answer>Ohm</answer>
+        <answer>Farad</answer>
+        <answer>Weber</answer>
+    </question>
+    <!-- TV and POP CULTURE -->
+>>>>>>> 4cad5040889f5c5bd482d58282b31db46f34a0d8
     <question subject="tv" difficulty="5">
         <prompt>Who is the host of current Cosmos series?</prompt>
         <answer>Carl Sagan</answer>
@@ -154,12 +234,159 @@
         <answer>Smash Mouth</answer>
         <answer>Eiffel 65</answer>
     </question>
+<<<<<<< HEAD
     <question subject="tv" difficulty="1">
+=======
+    <question subject="tv" difficulty="2">
+>>>>>>> 4cad5040889f5c5bd482d58282b31db46f34a0d8
         <prompt>What is Spider Man's real name?</prompt>
         <answer correct="true">Peter Parker</answer>
         <answer>Edward Brock</answer>
         <answer>Tony Stark</answer>
         <answer>Steve Rogers</answer>
+<<<<<<< HEAD
+=======
+    </question>
+    <question subject="tv" difficulty="7">
+        <prompt>What is the longest running sitcom?</prompt>
+        <answer correct="true">The Simpsons</answer>
+        <answer>Family Guy</answer>
+        <answer>Big Bang Theory</answer>
+        <answer>The Adventures of Ozzie and Harriet</answer>
+    </question>
+    <question subject="tv" difficulty="7">
+        <prompt>Who directed The Shining?</prompt>
+        <answer correct="true">Stanley Kubrick</answer>
+        <answer>Martin Scorsese</answer>
+        <answer>Christopher Nolan</answer>
+        <answer>Steven Spielberg</answer>
+    </question>
+    <question subject="tv" difficulty="5">
+        <prompt>Which TV criminal goes by the "Heisenberg"?</prompt>
+        <answer correct="true">Walter White</answer>
+        <answer>Dexter Morgan</answer>
+        <answer>Michael Corleone</answer>
+        <answer>Jimmy McNulty</answer>
+    </question>
+    <question subject="tv" difficulty="9">
+        <prompt>Who voices Homer Simpson?</prompt>
+        <answer correct="true">Dan Castellaneta</answer>
+        <answer>Yeardley Smith</answer>
+        <answer>Hank Azaria</answer>
+        <answer>Harry Shearer</answer>
+    </question>
+    <question subject="tv" difficulty="7">
+        <prompt>Which actor plays Sheldon Cooper?</prompt>
+        <answer correct="true">Jim Parsons</answer>
+        <answer>Simon Helberg</answer>
+        <answer>Kunal Nayyar</answer>
+        <answer>Johnny Galecki</answer>
+    </question>
+    <question subject="tv" difficulty="2">
+        <prompt>Which album won the 2014 Grammy's Best Album of the Year award?</prompt>
+        <answer correct="true">Random Access Memories</answer>
+        <answer>The Blessed Unrest</answer>
+        <answer>Good Kid, M.A.A.D City</answer>
+        <answer>The Heist</answer>
+    </question>
+    <question subject="tv" difficulty="8">
+        <prompt>What was the first animated film to be released by Disney?</prompt>
+        <answer correct="true">Snow White and the Seven Dwarfs</answer>
+        <answer>Pinocchio</answer>
+        <answer>Bambi</answer>
+        <answer>Dumbo</answer>
+    </question>
+    <question subject="tv" difficulty="10">
+        <prompt>Who was not one of the "Three Amigos" in the 1986 comedy?</prompt>
+        <answer correct="true">Dan Akroyd</answer>
+        <answer>Chevy Chase</answer>
+        <answer>Martin Short</answer>
+        <answer>Steve Martin</answer>
+    </question>
+    <question subject="tv" difficulty="8">
+        <prompt>The television series "Jackass" was originally shown on what network?</prompt>
+        <answer correct="true">MTV</answer>
+        <answer>TNT</answer>
+        <answer>ABC</answer>
+        <answer>CNN</answer>
+    </question>
+    <question subject="tv" difficulty="6">
+        <prompt>Which rapper became successful with the hit single "U Can't Touch This"?</prompt>
+        <answer correct="true">MC Hammer</answer>
+        <answer>Vanilla Ice</answer>
+        <answer>Snoop Dogg</answer>
+        <answer>Sir Mix-a-Lot</answer>
+    </question>
+    <question subject="tv" difficulty="8">
+        <prompt>In 2001, which band covered Michael Jackson's "Smooth Criminal"?</prompt>
+        <answer correct="true">Alien Ant Farm</answer>
+        <answer>Papa Roach</answer>
+        <answer>3 Doors Down</answer>
+        <answer>Audioslave</answer>
+    </question>
+    <question subject="tv" difficulty="7">
+        <prompt>How many dirty words are there according to comedian George Carlin?</prompt>
+        <answer correct="true">7</answer>
+        <answer>5</answer>
+        <answer>1</answer>
+        <answer>12</answer>
+    </question>
+    <question subject="tv" difficulty="4">
+        <prompt>Disney's "Toy Story" was produced by which animation studio?</prompt>
+        <answer correct="true">Pixar</answer>
+        <answer>Klasky Csupo</answer>
+        <answer>Sony Pictures</answer>
+        <answer>DreamWorks</answer>
+    </question>
+    <question subject="tv" difficulty="4">
+        <prompt>Which actor won an Academy Award for his role as Forrest Gump?</prompt>
+        <answer correct="true">Tom Hanks</answer>
+        <answer>Kevin Spacey</answer>
+        <answer>Alec Baldwin</answer>
+        <answer>Denzel Washington</answer>
+    </question>
+    <question subject="tv" difficulty="1">
+        <prompt>Homer, Marge, Bart, Lisa and Maggie ar charachters on what show?</prompt>
+        <answer correct="true">The Simpsons</answer>
+        <answer>King of the Hill</answer>
+        <answer>Family Guy</answer>
+        <answer>South Park</answer>
+    </question>
+    <question subject="tv" difficulty="8">
+        <prompt>Which actress is mentioned in the 1995 single "Buddy Holly" by Wheezer?</prompt>
+        <answer correct="true">Mary Tyler Moore</answer>
+        <answer>Jane Fonda</answer>
+        <answer>Dyan Cannon</answer>
+        <answer>Julie Andrews</answer>
+    </question>
+    <question subject="tv" difficulty="3">
+        <prompt>Which band member of The Beatles did Yoko Ono marry?</prompt>
+        <answer correct="true">John Lennon</answer>
+        <answer>Ringo Starr</answer>
+        <answer>George Harrison</answer>
+        <answer>Paul McCartney</answer>
+    </question>
+    <question subject="tv" difficulty="10">
+        <prompt>Who proposed to Katie Holmes at the top of the Eiffel Tower in 2005?</prompt>
+        <answer correct="true">Tom Cruise</answer>
+        <answer>Brad Pitt</answer>
+        <answer>Matt Damon</answer>
+        <answer>John Travolta</answer>
+    </question>
+    <question subject="tv" difficulty="4">
+        <prompt>Who played "Lizzie McGuire" on the Disney television show?</prompt>
+        <answer correct="true">Hilary Duff</answer>
+        <answer>Mary-Kate Olsen</answer>
+        <answer>Raven Simone</answer>
+        <answer>Lindsay Lohan</answer>
+    </question>
+    <question subject="tv" difficulty="10">
+        <prompt>Who took the place of Kathie Lee Gifford to host a morning talk show?</prompt>
+        <answer correct="true">Kelly Ripa</answer>
+        <answer>Katie Couric</answer>
+        <answer>Elizabeth Vargas</answer>
+        <answer>Robin Roberts</answer>
+>>>>>>> 4cad5040889f5c5bd482d58282b31db46f34a0d8
     </question>
     <question subject="tv" difficulty="7">
         <prompt>Hulk Hogan defeated ___________ at Madison Square Garden for the WWF Title in 1984</prompt>
@@ -390,5 +617,68 @@
         <answer>TCP</answer>
         <answer>UDP</answer>
         <answer>RARP</answer>
+    </question>
+    <question subject="computers" difficulty="6">
+        <prompt>Which organization owns the Fedora operating system?</prompt>
+        <answer correct="true">Red Hat</answer>
+        <answer>Canonical</answer>
+        <answer>Sun Microsystems</answer>
+        <answer>Oracle</answer>
+    </question>
+    <question subject="computers" difficulty="4">
+        <prompt>What animal is the mascot for Linux?</prompt>
+        <answer correct="true">Penguin</answer>
+        <answer>Dog</answer>
+        <answer>Cat</answer>
+        <answer>Gnu</answer>
+    </question>
+    <question subject="computers" difficulty="8">
+        <prompt>In what year was the first Macintosh released?</prompt>
+        <answer correct="true">1984</answer>
+        <answer>2007</answer>
+        <answer>2000</answer>
+        <answer>1992</answer>
+    </question>
+    <question subject="computers" difficulty="3">
+        <prompt>What does USB stand for?</prompt>
+        <answer correct="true">Universal Serial Bus</answer>
+        <answer>Unified Serial Bus</answer>
+        <answer>Unofficial Serial Bus</answer>
+        <answer>Useful Serial Bus</answer>
+    </question>
+    <question subject="computers" difficulty="7">
+        <prompt>Which computer scientist is credited with popularizing the term "debugging"?</prompt>
+        <answer correct="true">Grace Hopper</answer>
+        <answer>Alan Turing</answer>
+        <answer>Charles Babbage</answer>
+        <answer>Alonzo Church</answer>
+    </question>
+    <question subject="computers" difficulty="8">
+        <prompt>Which IEEE working group sets standards for Ethernet?</prompt>
+        <answer correct="true">802.3</answer>
+        <answer>802.11</answer>
+        <answer>802.15.4</answer>
+        <answer>802.4</answer>
+    </question>
+    <question subject="computers" difficulty="8">
+        <prompt>Which port does HTTP usually run on?</prompt>
+        <answer correct="true">80</answer>
+        <answer>8080</answer>
+        <answer>443</answer>
+        <answer>22</answer>
+    </question>
+    <question subject="computers" difficulty="9">
+        <prompt>Which of the following describes FTP over TLS?</prompt>
+        <answer correct="true">FTPS</answer>
+        <answer>SFTP</answer>
+        <answer>FTPTLS</answer>
+        <answer>SSLFTP</answer>
+    </question>
+    <question subject="computers" difficulty="7">
+        <prompt>Which organization currently creates the standards for the Java language?</prompt>
+        <answer correct="true">Oracle</answer>
+        <answer>Sun Microsystems</answer>
+        <answer>GNU</answer>
+        <answer>Apple</answer>
     </question>
 </questions>
