@@ -27,12 +27,111 @@
         <answer>Iron</answer>
     </question>
     <question subject="science" difficulty="5">
-        <prompt>Which scientist has won two Nobel prizes?</prompt>
-        <answer correct="true">Marie Curie</answer>
-        <answer>Albert Einstein</answer>
-        <answer>Niels Bohr</answer>
-        <answer>Max Planck</answer>
+    <prompt>Which scientist has won two Nobel prizes?</prompt>
+         <answer correct="true">Marie Curie</answer>
+         <answer>Albert Einstein</answer>
+         <answer>Niels Bohr</answer>
+         <answer>Max Planck</answer>
     </question>
+    <question subject="science" difficulty="8">
+        <prompt>The noble gases occupy 1% of the atmosphere of which ____ is argon</prompt>
+        <answer correct="true">0.94%</answer>
+        <answer>0.88%</answer>
+        <answer>0.83%</answer>
+        <answer>0.99%</answer>
+    </question>
+    <question subject="science" difficulty="5">
+        <prompt>All halogens have how many electrons in the out shell of the atom?</prompt>
+        <answer correct="true">Seven</answer>
+        <answer>Five</answer>
+        <answer>Two</answer>
+        <answer>Six</answer>
+    </question>
+    <question subject="science" difficulty="2">
+        <prompt>Insoluble salts can be prepared by?</prompt>
+        <answer correct="true">Precipitation</answer>
+        <answer>Evaporation</answer>
+        <answer>Filtration</answer>
+        <answer>Titration</answer>
+    </question>
+    <question subject="science" difficulty="9">
+        <prompt>Who coined the term Plasma in 1928?</prompt>
+        <answer correct="true">Irving Langmuir</answer>
+        <answer>William Crookes</answer>
+        <answer>Albert Einstein</answer>
+        <answer>Eric Cornell</answer>
+    </question>
+    <question subject="science" difficulty="1">
+        <prompt>What does the product of mass times acceleration equal?</prompt>
+        <answer correct="true">Net Force</answer>
+        <answer>Impulse</answer>
+        <answer>Momentum</answer>
+        <answer>Velocity</answer>
+    </question>
+    <question subject="science" difficulty="6">
+        <prompt>How much energy would 1 kg of mass produce if the speed of light is 3 x 10^8 m/s?</prompt>
+        <answer correct="true">9 x 10^16 J</answer>
+        <answer>3 x 10^8 J</answer>
+        <answer>2.7 x 10^25 J</answer>
+        <answer>0 J</answer>
+    </question>
+    <question subject="science" difficulty="3">
+        <prompt>In Physics, the capacity to do work is known as?</prompt>
+        <answer correct="true">Energy</answer>
+        <answer>Force</answer>
+        <answer>Power</answer>
+        <answer>Impulse</answer>
+    </question>
+    <question subject="science" difficulty="1">
+        <prompt>What occurs when a new compound is formed?</prompt>
+        <answer correct="true">Atoms are rearranged</answer>
+        <answer>Energy is destroyed</answer>
+        <answer>Atoms are lost</answer>
+        <answer>New matter is created</answer>
+    </question>
+    <question subject="science" difficulty="5">
+        <prompt>Who came up with the binomial nomenclature for classifying organisms?</prompt>
+        <answer correct="true">Linnaeus</answer>
+        <answer>Darwin</answer>
+        <answer>Hooke</answer>
+        <answer>Boyle</answer>
+    </question>
+    <question subject="science" difficulty="4">
+        <prompt>He experimented with the pea plant and worked with the Punnett Square.</prompt>
+        <answer correct="true">Greg Mendel</answer>
+        <answer>Robert Hooke</answer>
+        <answer>John Dalton</answer>
+        <answer>Ernest Rutherford</answer>
+    </question>
+    <question subject="science" difficulty="3">
+        <prompt>Italian artist and intellectual Leonardo da Vinci lived during what period?</prompt>
+        <answer correct="true">Renaissance</answer>
+        <answer>Enlightenment</answer>
+        <answer>Industrial Revolution</answer>
+        <answer>Georgian Era</answer>
+    </question>
+    <question subject="science" difficulty="3">
+        <prompt>Device used to measure atmospheric pressure is known as?</prompt>
+        <answer correct="true">Barometer</answer>
+        <answer>Thermometer</answer>
+        <answer>Voltmeter</answer>
+        <answer>Pressure Gauge</answer>
+    </question>
+    <question subject="science" difficulty="1">
+        <prompt>Table salt is primarily composed of:</prompt>
+        <answer correct="true">Sodium Chloride</answer>
+        <answer>Potassium Chloride</answer>
+        <answer>Lithium Hydroxide</answer>
+        <answer>Hydrogen Peroxide</answer>
+    </question>
+    <question subject="science" difficulty="1">
+        <prompt>Litmus paper turns what colour when in contact with an acid?</prompt>
+        <answer correct="true">Red</answer>
+        <answer>Blue</answer>
+        <answer>Green</answer>
+        <answer>Yellow</answer>
+    </question>
+
     <!-- TV and MOVIES -->
     <question subject="tv" difficulty="5">
         <prompt>Who is the host of current Cosmos series?</prompt>
@@ -48,36 +147,242 @@
         <answer>Rob Ford</answer>
         <answer>Sean Connery</answer>
     </question>
-    <question subject="tv" difficulty="8">
+    <question subject="tv" difficulty="7">
         <prompt>Who received mainstream success with a remake of "Who Let the Dogs Out?"</prompt>
         <answer correct="true">Baha Men</answer>
         <answer>The Proclaimers</answer>
         <answer>Smash Mouth</answer>
         <answer>Eiffel 65</answer>
     </question>
-    <question subject="tv" difficulty="2">
-    <prompt>What is Spider Man's real name?</prompt>
-    <answer correct="true">Peter Parker</answer>
-    <answer>Edward Brock</answer>
-    <answer>Tony Stark</answer>
-    <answer>Steve Rogers</answer>
+    <question subject="tv" difficulty="1">
+        <prompt>What is Spider Man's real name?</prompt>
+        <answer correct="true">Peter Parker</answer>
+        <answer>Edward Brock</answer>
+        <answer>Tony Stark</answer>
+        <answer>Steve Rogers</answer>
     </question>
+    <question subject="tv" difficulty="7">
+        <prompt>Hulk Hogan defeated ___________ at Madison Square Garden for the WWF Title in 1984</prompt>
+        <answer correct="true">Iron Sheik</answer>
+        <answer>Bob Backlun</answer>
+        <answer>Bruno Samartino</answer>
+        <answer>Jesse Ventura</answer>
+    </question>
+
     <!-- HISTORY -->
-    <question subject="history" difficulty="8">
+    <question subject="history" difficulty="4">
         <prompt>When did the American Revolutionary War start?</prompt>
         <answer correct="true">1775</answer>
         <answer>1876</answer>
         <answer>1812</answer>
         <answer>1784</answer>
     </question>
+    <question subject="history" difficulty="5">
+        <prompt>Who was the only U.S. President to resign from office?</prompt>
+        <answer correct="true">Richard Nixon</answer>
+        <answer>Jimmy Carter</answer>
+        <answer>Gerald Ford</answer>
+        <answer>Ulysses Grant</answer>
+    </question>
+    <question subject="history" difficulty="4">
+        <prompt>Which English Monarch had six wives?</prompt>
+        <answer correct="true">Henry VIII</answer>
+        <answer>Edward the Elder</answer>
+        <answer>Edward V</answer>
+        <answer>Henry the Young King </answer>
+    </question>
+    <question subject="history" difficulty="3">
+        <prompt>The First World War began in which year?</prompt>
+        <answer correct="true">1914</answer>
+        <answer>1923</answer>
+        <answer>1917</answer>
+        <answer>1938</answer>
+    </question>
+    <question subject="history" difficulty="4">
+    <prompt>Which city was John F. Kennedy assassinated in?</prompt>
+    <answer correct="true">Dallas</answer>
+    <answer>Austin</answer>
+    <answer>Lincoln</answer>
+    <answer>Boston</answer>
+    </question>
+    <question subject="history" difficulty="2">
+        <prompt>Who fought in the War of 1812?</prompt>
+        <answer correct="true">Andrew Jackson</answer>
+        <answer>Abraham Lincoln</answer>
+        <answer>George Washington</answer>
+        <answer>John Tyler</answer>
+    </question>
+    <question subject="history" difficulty="2">
+        <prompt>The Magna Carta was published by the King of which country?</prompt>
+        <answer correct="true">England</answer>
+        <answer>France</answer>
+        <answer>Austria</answer>
+        <answer>Italy</answer>
+    </question>
+    <question subject="history" difficulty="3">
+        <prompt>The first successful printing press was developed by this man:</prompt>
+        <answer correct="true">Johannes Gutenburg</answer>
+        <answer>Benjamin Franklin</answer>
+        <answer>Isaac Newton</answer>
+        <answer>Martin Luther</answer>
+    </question>
+    <question subject="history" difficulty="6">
+        <prompt>The Hundred Years War was fought between what two countries?</prompt>
+        <answer correct="true">France and England</answer>
+        <answer>Spain and France</answer>
+        <answer>England and Germany</answer>
+        <answer>Italy and Carthage</answer>
+    </question>
+    <question subject="history" difficulty="7">
+        <prompt>What famous 5th century A.D conqueror was known as 'The Scourge of God'?</prompt>
+        <answer correct="true">Attila the Hun</answer>
+        <answer>Hannibal</answer>
+        <answer>Julius Caesar</answer>
+        <answer>William the Conqueror</answer>
+    </question>
+    <question subject="history" difficulty="6">
+        <prompt>This man wrote a document known as the 95 Theses</prompt>
+        <answer correct="true">Martin Luther</answer>
+        <answer>Saint Augustus</answer>
+        <answer>Henry David Thoreau</answer>
+        <answer>John Locke</answer>
+    </question>
+    <question subject="history" difficulty="9">
+        <prompt>The Free Soil candidate in the U.S. presidential election of 1848 was:</prompt>
+        <answer correct="true">Martin Van Buren</answer>
+        <answer>Zachary Taylor</answer>
+        <answer>Franklin Pierce</answer>
+        <answer>Millard Fillmore</answer>
+    </question>
+    <question subject="history" difficulty="3">
+    <prompt>Who was the first US President to live in the White House?</prompt>
+        <answer correct="true">John Adams</answer>
+        <answer>George Washington</answer>
+        <answer>Andrew Jackson</answer>
+        <answer>Martin Van Buren</answer>
+    </question>
+    <question subject="history" difficulty="4">
+        <prompt>Forced to to abdicate in 1918, Wilhelm II was the last German what?</prompt>
+        <answer correct="true">Kaiser</answer>
+        <answer>Emperor</answer>
+        <answer>Prime Minister</answer>
+        <answer>Czar</answer>
+    </question>
+    <question subject="games" difficulty="10">
+        <prompt>From where in France were over 350,000 British and French troops evacuated in May 1940?</prompt>
+        <answer correct="true">Dunkirk</answer>
+        <answer>Normandy</answer>
+        <answer>Marseille</answer>
+        <answer>Cherbourg</answer>
+    </question>
+    <question subject="games" difficulty="9">
+        <prompt>What was Jim Thorpe stripped of his Olympic medals in 1913?</prompt>
+        <answer correct="true">He had previously played professional baseball</answer>
+        <answer>He assaulted a player</answer>
+        <answer>He was a German spy</answer>
+        <answer>He was an Opium dealer</answer>
+    </question>
+    <question subject="games" difficulty="9">
+        <prompt>Ahmed Sékou Touré became the first president of what newly independent country in 1958?</prompt>
+        <answer correct="true">Guinea</answer>
+        <answer>Fiji</answer>
+        <answer>Djibouti</answer>
+        <answer>Comoros</answer>
+    </question>
+    <question subject="games" difficulty="4">
+        <prompt>Who was a Russian peasant, mystic and private advisor to the Romanov family?</prompt>
+        <answer correct="true">Grigori Rasputin</answer>
+        <answer>Yefim Yakovlevich</answer>
+        <answer>Vladimir Lenin</answer>
+        <answer>Joseph Stalin</answer>
+    </question>
+    <question subject="games" difficulty="2">
+        <prompt>What does Benito Mussolini's title "Il Duce" means?</prompt>
+        <answer correct="true">Leader</answer>
+        <answer>Warrior</answer>
+        <answer>Dictator</answer>
+        <answer>Emperor</answer>
+    </question>
+    <question subject="games" difficulty="5">
+        <prompt>Which European country is ruled by 'The Order of the House of Orange'</prompt>
+        <answer correct="true">Netherlands</answer>
+        <answer>Norway</answer>
+        <answer>Belgium</answer>
+        <answer>Sweden</answer>
+    </question>
+    <question subject="games" difficulty="3">
+        <prompt>A German-born Jewish girl named Anne Frank is best known for?</prompt>
+        <answer correct="true">Her diary</answer>
+        <answer>Being a spy</answer>
+        <answer>Being a nurse</answer>
+        <answer>Her contributions to music and arts</answer>
+    </question>
+    <question subject="games" difficulty="9">
+        <prompt>Mohammed El Baradei donated the money he won from the Nobel Prize to?</prompt>
+        <answer correct="true">Orphanages in Cairo</answer>
+        <answer>Aids clinics in South Africa</answer>
+        <answer>Great Wall of China</answer>
+        <answer>Levies in New Orleans</answer>
+    </question>
+
     <!-- VIDEO GAMES -->
-    <question subject="games" difficulty="6">
+    <question subject="games" difficulty="3">
         <prompt>What was the name of the main antagonist of the original Assassin's Creed?</prompt>
         <answer correct="true">Al Mualim</answer>
         <answer>Altaïr ibn-La'Ahad</answer>
         <answer>King Richard</answer>
         <answer>Robert de Sablé</answer>
     </question>
+    <question subject="history" difficulty="3">
+        <prompt>In which game did Mario first appear in?</prompt>
+        <answer correct="true">Donkey Kong</answer>
+        <answer>Super Mario Brothers</answer>
+        <answer>Paper Mario</answer>
+        <answer>The Legeng of Zelda</answer>
+    </question>
+    <question subject="games" difficulty="3">
+        <prompt>Which video game character is a fortune-hunter and a descendant of a famous English privateer?</prompt>
+        <answer correct="true">Nathan Drake</answer>
+        <answer>Thomas Hickey</answer>
+        <answer>Charles Lee</answer>
+        <answer>Harry Flynn</answer>
+    </question>
+    <question subject="games" difficulty="4">
+        <prompt>In Uncharted 3, Nathan Drake discovers the location of the Rub' al Khali in which country?</prompt>
+        <answer correct="true">Yemen</answer>
+        <answer>Saudi Arabia</answer>
+        <answer>Syria</answer>
+        <answer>France</answer>
+    </question>
+    <question subject="games" difficulty="9">
+        <prompt>Which nightclub did Desmond Miles work in before being kidnapped by the Templars?</prompt>
+        <answer correct="true">Bad Weather</answer>
+        <answer>Lost Souls</answer>
+        <answer>Forbidden Fruit</answer>
+        <answer>Hidden Storm</answer>
+    </question>
+    <question subject="games" difficulty="4">
+        <prompt>Which of these is not one of the tenets of The Assassin's Creed?</prompt>
+        <answer correct="true">Educate man as to the blindness of faith</answer>
+        <answer>Stay your blade from the flash of an innocent</answer>
+        <answer>Never compromise the brotherhood</answer>
+        <answer>Hide in plain sight</answer>
+    </question>
+    <question subject="games" difficulty="8">
+        <prompt>Which finger must a Levantine Assassins lose in order to wield a hidden blade?</prompt>
+        <answer correct="true">Ring finger</answer>
+        <answer>Index finger</answer>
+        <answer>Middle finger</answer>
+        <answer>Little finger</answer>
+    </question>
+    <question subject="games" difficulty="4">
+        <prompt>What were the original two Pokémon games for Gameboy called?</prompt>
+        <answer correct="true">Red and Blue</answer>
+        <answer>Black and White</answer>
+        <answer>Diamond and Pearl</answer>
+        <answer>X and Y</answer>
+    </question>
+
     <!-- COMPUTERS -->
     <question subject="computers" difficulty="9">
         <prompt>Which of the following is a protocol on the application layer of the OSI model?</prompt>
