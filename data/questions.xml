@@ -26,7 +26,6 @@
         <answer correct="true">Tungsten</answer>
         <answer>Iron</answer>
     </question>
-<<<<<<< HEAD
     <question subject="science" difficulty="5">
     <prompt>Which scientist has won two Nobel prizes?</prompt>
          <answer correct="true">Marie Curie</answer>
@@ -59,11 +58,6 @@
         <prompt>Who coined the term Plasma in 1928?</prompt>
         <answer correct="true">Irving Langmuir</answer>
         <answer>William Crookes</answer>
-=======
-    <question subject="science" difficulty="6">
-        <prompt>Which scientist has won two Nobel prizes?</prompt>
-        <answer correct="true">Marie Curie</answer>
->>>>>>> 4cad5040889f5c5bd482d58282b31db46f34a0d8
         <answer>Albert Einstein</answer>
         <answer>Eric Cornell</answer>
     </question>
@@ -109,7 +103,6 @@
         <answer>John Dalton</answer>
         <answer>Ernest Rutherford</answer>
     </question>
-<<<<<<< HEAD
     <question subject="science" difficulty="3">
         <prompt>Italian artist and intellectual Leonardo da Vinci lived during what period?</prompt>
         <answer correct="true">Renaissance</answer>
@@ -138,9 +131,6 @@
         <answer>Green</answer>
         <answer>Yellow</answer>
     </question>
-
-    <!-- TV and MOVIES -->
-=======
     <question subject="science" difficulty="6">
         <prompt>What species of animal was the first to orbit the Earth?</prompt>
         <answer correct="true">Dog</answer>
@@ -212,7 +202,6 @@
         <answer>Weber</answer>
     </question>
     <!-- TV and POP CULTURE -->
->>>>>>> 4cad5040889f5c5bd482d58282b31db46f34a0d8
     <question subject="tv" difficulty="5">
         <prompt>Who is the host of current Cosmos series?</prompt>
         <answer>Carl Sagan</answer>
@@ -234,18 +223,12 @@
         <answer>Smash Mouth</answer>
         <answer>Eiffel 65</answer>
     </question>
-<<<<<<< HEAD
     <question subject="tv" difficulty="1">
-=======
-    <question subject="tv" difficulty="2">
->>>>>>> 4cad5040889f5c5bd482d58282b31db46f34a0d8
         <prompt>What is Spider Man's real name?</prompt>
         <answer correct="true">Peter Parker</answer>
         <answer>Edward Brock</answer>
         <answer>Tony Stark</answer>
         <answer>Steve Rogers</answer>
-<<<<<<< HEAD
-=======
     </question>
     <question subject="tv" difficulty="7">
         <prompt>What is the longest running sitcom?</prompt>
@@ -386,7 +369,6 @@
         <answer>Katie Couric</answer>
         <answer>Elizabeth Vargas</answer>
         <answer>Robin Roberts</answer>
->>>>>>> 4cad5040889f5c5bd482d58282b31db46f34a0d8
     </question>
     <question subject="tv" difficulty="7">
         <prompt>Hulk Hogan defeated ___________ at Madison Square Garden for the WWF Title in 1984</prompt>
