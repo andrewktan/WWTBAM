@@ -37,7 +37,7 @@ public class ScorePanel extends JPanel {
         super.paintComponent(g);
         g.drawImage(bgimg, 0, 0, null); // draw background image
         g.setColor(new Color(255, 255, 255, 100));
-        g.fillRect(0, 605 - (scoreInd * 28), 250, 35);
+        g.fillRect(0, 605 - (scoreInd * 28 + 1), 250, 35);
     }
 
     public int getScore() {

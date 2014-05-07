@@ -88,9 +88,14 @@ public class MainScreen extends JFrame implements ActionListener {
 
         // set up title image
         JLabel title = new JLabel(new ImageIcon(mainScreen));
-        title.setPreferredSize(new Dimension(600, 620));
+        title.setPreferredSize(new Dimension(530, 600));
         mainMenu.add(title, BorderLayout.WEST);
         mainMenu.setBackground(Color.WHITE);
+
+        startBtn.setPreferredSize(new Dimension(100,50));
+        instructionsBtn.setPreferredSize(new Dimension(125,50));
+        quitBtn.setPreferredSize(new Dimension(100,50));
+
 
         // populate JPanel
         mainMenu.add(startBtn);
@@ -140,37 +145,33 @@ public class MainScreen extends JFrame implements ActionListener {
         JLabel message = new JLabel("Game Over! You Have Earned ");
         JLabel money = new JLabel(String.format("$%d", finalScore));
 
-        // set layout
-        GroupLayout layout = new GroupLayout(end);
-        end.setLayout(layout);
-
         // format
         end.setBackground(Color.BLACK);
         message.setFont(new Font("Arial", Font.ROMAN_BASELINE, 40));
-        money.setFont(new Font("Arial", Font.ROMAN_BASELINE, 210));
+        money.setFont(new Font("Arial", Font.ROMAN_BASELINE, 110));
+        money.setForeground(Color.WHITE);
+        money.setHorizontalAlignment(SwingConstants.CENTER);
         message.setForeground(Color.WHITE);
         money.setForeground(Color.YELLOW);
 
-        // layout
-        layout.setHorizontalGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(message)
-                        .addComponent(money)
-                        .addComponent(playAgainBtn)
-                ).addComponent(quitBtn)
-        );
+        end.setLayout(null);
 
-        layout.setVerticalGroup(layout.createSequentialGroup()
-                .addComponent(message)
-                .addComponent(money)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(playAgainBtn)
-                        .addComponent(quitBtn)
-                )
-        );
+
+        end.add(message);
+        end.add(money);
+        end.add(playAgainBtn);
+        end.add(quitBtn);
+
+        Insets insets = this.getInsets();
+
+        message.setBounds(175 + insets.left, 1 + insets.top,600,50);
+        money.setBounds(220 + insets.left, 190 + insets.top,500,200);
+        playAgainBtn.setBounds(265 + insets.left, 450 + insets.top,100,50);
+        quitBtn.setBounds(550 + insets.left, 450 + insets.top,100,50);
 
         // add ActionListeners
         playAgainBtn.addActionListener(this);
+        quitBtn.addActionListener(this);
 
         // display
         setContentPane(end);
@@ -204,11 +205,13 @@ public class MainScreen extends JFrame implements ActionListener {
                     fiftyFiftyUsed1 = true;
                     currentGameplay.fiftyFiftyLifeline(1);
                     currentGameplay.repaint();
-                } else if (currentGameplay.fiftyFiftyTwoPressed()) {
+                }
+                if (currentGameplay.fiftyFiftyTwoPressed()) {
                     fiftyFiftyUsed2 = true;
                     currentGameplay.fiftyFiftyLifeline(2);
                     currentGameplay.repaint();
-                } else if (currentGameplay.audiencePollPressed()) {
+                }
+                else if (currentGameplay.audiencePollPressed()) {
                     audiencePollUsed = true;
                     currentGameplay.audiencePollLifeLine();
                     currentGameplay.repaint();
@@ -229,8 +232,11 @@ public class MainScreen extends JFrame implements ActionListener {
                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[1]);
 
                         if (decision == JOptionPane.YES_OPTION) { // if continue with game
+                            if(moneyTree.getScore() == 1000000)
+                            displayEndScreen(false);
+                            else
                             nextScreen(); // display next question
-                        } else {
+                        } else{
                             displayEndScreen(false);
                         }
 
