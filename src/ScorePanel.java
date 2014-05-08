@@ -16,11 +16,13 @@ public class ScorePanel extends JPanel {
             7500, 10000, 15000, 25000, 50000,
             75000, 150000, 250000, 500000, 1000000};
 
+    //checks points so u go back to a specific amount
     protected int[] checkpoints = {0, 0, 0, 0, 0, 5,
             5, 5, 5, 5, 10,
             10, 10, 10, 10, 15};
 
-    ScorePanel() {
+    ScorePanel() //default constructor
+    {
         // set size
         setSize(250, 658);
         setVisible(true);
@@ -37,11 +39,13 @@ public class ScorePanel extends JPanel {
         super.paintComponent(g);
         g.drawImage(bgimg, 0, 0, null); // draw background image
         g.setColor(new Color(255, 255, 255, 100));
-        g.fillRect(0, 605 - (scoreInd * 28), 250, 35);
+
+        //moves up the translucent rectangle up by a specifc number of coordinates
+        g.fillRect(0, 605 - (scoreInd * 28 + 1), 250, 35);
     }
 
     public int getScore() {
-        return scores[scoreInd];
+        return scores[scoreInd]; //gets the specifc score at any given time
     }
 
     public int getIndex() {
@@ -49,14 +53,14 @@ public class ScorePanel extends JPanel {
     }
 
     public void resetScore() {
-        scoreInd = 0;
+        scoreInd = 0; //starts the score back to zero
     }
 
     public void incrementScore() {
-        scoreInd += 1;
+        scoreInd += 1; //increments the score
     }
 
     public int getCheckpointScore() {
-        return scores[checkpoints[scoreInd]];
+        return scores[checkpoints[scoreInd]]; //gets which checkpoint to return to
     }
 }
