@@ -63,10 +63,10 @@ public class MainScreen extends JFrame implements ActionListener {
     public MainScreen() {
 
         //Sound
-        introMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/intro.wav");
+        introMUSIC = new Sound("src/sound/intro.wav");
         introMUSIC.start();
 
-        gameMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/game_sound.wav");
+        gameMUSIC = new Sound("src/sound/game_sound.wav");
 
         //Menus
         menuBar.add(GameMENU);
@@ -243,7 +243,6 @@ public class MainScreen extends JFrame implements ActionListener {
 
 
     protected void showInstructions() {
-        System.out.println("SOMETHING");
 
         try {
             // create JComponents
@@ -270,7 +269,9 @@ public class MainScreen extends JFrame implements ActionListener {
             introMUSIC.stop();
             gameMUSIC.start();
             gameMUSIC.loop(100);
-        } else if (e.getSource().equals(newGameITEM) || e.getSource().equals(playAgainBtn)) {
+        } else if (e.getSource().equals(instructionsBtn) || e.getSource().equals(instructionsITEM))
+            showInstructions();
+        else if (e.getSource().equals(newGameITEM) || e.getSource().equals(playAgainBtn)) {
             reset();
         } else {
             if (!currentGameplay.isAnswered()) { // if something else is pressed
@@ -281,7 +282,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                 if (currentGameplay.isCorrect()) { // if correct
 
-                    winMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/win.wav");
+                    winMUSIC = new Sound("src/sound/win.wav");
                     winMUSIC.start();
 
                     moneyTree.incrementScore(); // increase score
@@ -289,8 +290,8 @@ public class MainScreen extends JFrame implements ActionListener {
 
                     //decision pop up window
                     decision = JOptionPane.showOptionDialog(this, "CONGRATULATIONS! YOU HAVE WON $" +
-                            moneyTree.getScore() + "\n\n   Walk away with $" +
-                            moneyTree.getScore() + " or continue?", "CONGRATULATIONS!",
+                                    moneyTree.getScore() + "\n\n   Walk away with $" +
+                                    moneyTree.getScore() + " or continue?", "CONGRATULATIONS!",
                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[1]);
 
                     if (decision == JOptionPane.YES_OPTION) { // if continue with game
@@ -301,7 +302,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                         if(moneyTree.getScore() == 1000000) //if user wins
                         {
-                            finalMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/intro.wav");
+                            finalMUSIC = new Sound("src/sound/intro.wav");
                             finalMUSIC.start();
 
                             displayEndScreen(false);
@@ -313,7 +314,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                 } else { // if incorrect
 
-                    loseMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/lose.wav");
+                    loseMUSIC = new Sound("/src/sound/lose.wav");
                     loseMUSIC.start();
 
                     displayEndScreen(true);
