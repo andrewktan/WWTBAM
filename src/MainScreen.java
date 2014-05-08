@@ -60,10 +60,10 @@ public class MainScreen extends JFrame implements ActionListener {
     public MainScreen() {
 
         //Sound
-        introMUSIC = new Sound("sound/intro.wav");
+        introMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/intro.wav");
         introMUSIC.start();
 
-        gameMUSIC = new Sound("sound/game_sound.wav");
+        gameMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/game_sound.wav");
 
         //Menus
         menuBar.add(GameMENU);
@@ -244,7 +244,6 @@ public class MainScreen extends JFrame implements ActionListener {
             {
                 nextScreen();
                 introMUSIC.stop();
-                finalMUSIC.stop();
                 gameMUSIC.start();
                 gameMUSIC.loop(100);
             }
@@ -259,7 +258,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                     if (currentGameplay.isCorrect()) { // if correct
 
-                        winMUSIC = new Sound("sound/win.wav");
+                        winMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/win.wav");
                         winMUSIC.start();
 
                         moneyTree.incrementScore(); // increase score
@@ -279,7 +278,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                             if(moneyTree.getScore() == 1000000) //if user wins
                             {
-                                finalMUSIC = new Sound("sound/intro.wav");
+                                finalMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/intro.wav");
                                 finalMUSIC.start();
 
                             displayEndScreen(false);
@@ -291,7 +290,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                     } else { // if incorrect
 
-                        loseMUSIC = new Sound("sound/lose.wav");
+                        loseMUSIC = new Sound("C://Users//Noor Gangi//GUI WWTBAM//src//sound/lose.wav");
                         loseMUSIC.start();
 
                         displayEndScreen(true);
