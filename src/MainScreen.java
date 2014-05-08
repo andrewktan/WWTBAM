@@ -47,11 +47,24 @@ public class MainScreen extends JFrame implements ActionListener {
     private boolean audiencePollUsed1 = false;
     private boolean audiencePollUsed2 = false;
 
+    private Sound introMUSIC;
+    private Sound gameMUSIC;
+    private Sound winMUSIC;
+    private Sound loseMUSIC;
+    private Sound finalMUSIC;
+
     //
     private boolean answered;
 
 
     public MainScreen() {
+
+        //Sound
+        introMUSIC = new Sound("sound/intro.wav");
+        introMUSIC.start();
+
+        gameMUSIC = new Sound("sound/game_sound.wav");
+
         //Menus
         menuBar.add(GameMENU);
         menuBar.add(InstructionsMENU);
@@ -118,8 +131,19 @@ public class MainScreen extends JFrame implements ActionListener {
             return;
         }
 
-        // randomly select question
-        Question currentQuestion = questions.remove((int) (Math.random() * questions.size()));
+        int qInd, ceil, floor;
+        Question currentQuestion = null;
+        do {
+            qInd = (int) (Math.random() * questions.size()); // generate random index
+            // create min&max difficulties based on question number
+            ceil =  (int) ((float) moneyTree.getIndex() * 10 / 15) + 4;
+            floor = ceil - 5;
+            // if difficulty within range
+            if (questions.get(qInd).getDifficulty() >= floor && questions.get(qInd).getDifficulty() <= ceil)
+                currentQuestion = questions.remove(qInd); // set current question
+        } while (currentQuestion == null); // continue until suitable question is found
+
+        // create gameplay object
         currentGameplay = new Gameplay(currentQuestion, this, fiftyFiftyUsed1, fiftyFiftyUsed2, audiencePollUsed1, audiencePollUsed2);
 
         // manage layout of screen
@@ -217,7 +241,13 @@ public class MainScreen extends JFrame implements ActionListener {
         if (e.getSource().equals(quitBtn)) { // quit button
             dispose();
         } else if (e.getSource().equals(startBtn)) { // start button
-            nextScreen();
+            {
+                nextScreen();
+                introMUSIC.stop();
+                finalMUSIC.stop();
+                gameMUSIC.start();
+                gameMUSIC.loop(100);
+            }
         } else if (e.getSource().equals(newGameITEM) || e.getSource().equals(playAgainBtn)) {
             reset();
         } else {
@@ -226,14 +256,11 @@ public class MainScreen extends JFrame implements ActionListener {
                 lifeLinePressed();
 
             } else if (currentGameplay.isAnswered()) { //else if an answer has been selected
-                //Confirmation pop up window
-
-                /*confirmation = JOptionPane.showOptionDialog(this, "Is this your final answer?", "Confirm Choice",
-                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-
-                if (confirmation == JOptionPane.YES_OPTION)*/ {
 
                     if (currentGameplay.isCorrect()) { // if correct
+
+                        winMUSIC = new Sound("sound/win.wav");
+                        winMUSIC.start();
 
                         moneyTree.incrementScore(); // increase score
                         moneyTree.repaint();
@@ -246,19 +273,27 @@ public class MainScreen extends JFrame implements ActionListener {
 
                         if (decision == JOptionPane.YES_OPTION) { // if continue with game
 
+                            winMUSIC.stop();
+                            nextScreen(); // display next question
+
+
                             if(moneyTree.getScore() == 1000000) //if user wins
+                            {
+                                finalMUSIC = new Sound("sound/intro.wav");
+                                finalMUSIC.start();
 
                             displayEndScreen(false);
-
-                            else
-
-                            nextScreen(); // display next question
+                            }
 
                         } else{
                             displayEndScreen(false);
                         }
 
                     } else { // if incorrect
+
+                        loseMUSIC = new Sound("sound/lose.wav");
+                        loseMUSIC.start();
+
                         displayEndScreen(true);
                     }
 
@@ -266,5 +301,5 @@ public class MainScreen extends JFrame implements ActionListener {
             }
         }
     }
-}
+
 

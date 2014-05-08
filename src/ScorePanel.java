@@ -48,6 +48,10 @@ public class ScorePanel extends JPanel {
         return scores[scoreInd]; //gets the specifc score at any given time
     }
 
+    public int getIndex() {
+        return scoreInd;
+    }
+
     public void resetScore() {
         scoreInd = 0; //starts the score back to zero
     }

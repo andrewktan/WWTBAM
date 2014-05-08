@@ -329,7 +329,7 @@
         <answer>Denzel Washington</answer>
     </question>
     <question subject="tv" difficulty="1">
-        <prompt>Homer, Marge, Bart, Lisa and Maggie ar charachters on what show?</prompt>
+        <prompt>Homer, Marge, Bart, Lisa and Maggie are charachters on what show?</prompt>
         <answer correct="true">The Simpsons</answer>
         <answer>King of the Hill</answer>
         <answer>Family Guy</answer>

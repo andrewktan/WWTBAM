@@ -8,7 +8,7 @@ import java.util.*;
 public class Question {
     protected String prompt;
     protected ArrayList<String> answers;
-    protected int correct;
+    protected int correct, difficulty;
 
     /**
      * create a Question object
@@ -17,9 +17,10 @@ public class Question {
      * @param answers
      * @param correct
      */
-    public Question(String prompt, ArrayList<String> answers, int correct) {
-
+    public Question(String prompt, ArrayList<String> answers, int correct, int difficulty) {
+        // set prompt and difficulty
         this.prompt = prompt;
+        this.difficulty = difficulty;
 
         // randomize answer order
         String correctAns = answers.get(correct);
@@ -35,7 +36,7 @@ public class Question {
      * Read from file
      *
      * @param str
-     * @return
+     * @return ArrayList of Question objects
      */
     public static ArrayList<Question> readQuestionsFromFile(String str) {
         // create ArrayList of questions
@@ -57,10 +58,13 @@ public class Question {
                 // get prompt
                 String prompt = ((Element) question.selectNodes("prompt").get(0)).getText();
 
+                // get difficulty
+                int difficulty = Integer.parseInt(question.attributeValue("difficulty"));
+
                 // get answers
                 ArrayList<String> answers = new ArrayList<String>();
                 int correct = 0;
-                for (Iterator a = question.selectNodes("answer").iterator(); a.hasNext(); ) {
+                for (Iterator a = question.selectNodes("answer").iterator(); a.hasNext(); ) { // iterate through answers
                     Element answer = (Element) a.next();
                     answers.add(answer.getText());
 
@@ -70,7 +74,7 @@ public class Question {
                 }
 
                 // create question object
-                ret.add(new Question(prompt, answers, correct));
+                ret.add(new Question(prompt, answers, correct, difficulty));
             }
 
         } catch (Exception e) {
@@ -78,6 +82,12 @@ public class Question {
         }
         return ret;
     }
+
+    /**
+     * accessor for difficulty
+     * @return difficulty [1,10]
+     */
+    public int getDifficulty() { return difficulty; }
 
     /**
      * accessor for prompt
