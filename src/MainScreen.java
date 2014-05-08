@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowFocusListener;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -35,7 +37,8 @@ public class MainScreen extends JFrame implements ActionListener {
     private JMenuBar menuBar = new JMenuBar();
     private JMenu GameMENU = new JMenu("Game");
     private JMenuItem newGameITEM = new JMenuItem("New Game");
-    private JMenu InstructionsMENU = new JMenu("Information");
+    private JMenu instructionsMENU = new JMenu("Information");
+    private JMenuItem instructionsITEM = new JMenuItem("Instructions");
     // objects for gameplay and confirmations
     private ArrayList<Question> questions;
     private Gameplay currentGameplay;
@@ -49,9 +52,11 @@ public class MainScreen extends JFrame implements ActionListener {
     public MainScreen() {
         //Menus
         menuBar.add(GameMENU);
-        menuBar.add(InstructionsMENU);
+        menuBar.add(instructionsMENU);
         GameMENU.add(newGameITEM);
+        instructionsMENU.add(instructionsITEM);
         newGameITEM.addActionListener(this);
+        instructionsITEM.addActionListener(this);
         this.setJMenuBar(menuBar);
         // read from file
         questions = Question.readQuestionsFromFile("questions.xml");
@@ -78,6 +83,7 @@ public class MainScreen extends JFrame implements ActionListener {
         // add ActionListeners
         quitBtn.addActionListener(this);
         startBtn.addActionListener(this);
+        instructionsBtn.addActionListener(this);
 
         //customize buttons
 
@@ -101,7 +107,7 @@ public class MainScreen extends JFrame implements ActionListener {
     }
 
 
-    public void nextScreen() {
+    protected void nextScreen() {
         // if there are no more questions, end game
         if (questions.size() == 0) {
             dispose();
@@ -133,7 +139,7 @@ public class MainScreen extends JFrame implements ActionListener {
         setSize(900 + 250, 675); //dimensions needed for the template picture of the questions/answers/money-tree
     }
 
-    public void displayEndScreen(boolean wrong) {
+    protected void displayEndScreen(boolean wrong) {
         // create JComponents
         int finalScore = (wrong) ? moneyTree.getCheckpointScore() : moneyTree.getScore();
         JPanel end = new JPanel();
@@ -177,7 +183,7 @@ public class MainScreen extends JFrame implements ActionListener {
         this.setSize(950, 675);
     }
 
-    public void reset() {
+    protected void reset() {
         moneyTree.resetScore(); // reset score
         mainMenu.add(quitBtn); // re-add button to mainMenu
         setContentPane(mainMenu); // return to main menu
@@ -189,12 +195,33 @@ public class MainScreen extends JFrame implements ActionListener {
     }
 
 
+    protected void showInstructions() {
+        System.out.println("SOMETHING");
+
+        try {
+            // create JComponents
+            JPanel p = new JPanel();
+            URL u = (new java.io.File("data/instructions.html")).toURI().toURL(); // get URL of instructions file
+            JEditorPane ep = new JEditorPane(u); // read instructions from file
+            ep.setSize(908, 600);
+            p.add(ep);
+            p.setBackground(Color.WHITE);
+            setContentPane(p);
+            setSize(908, 675);
+        } catch (IOException e) {
+
+        }
+
+    }
+
     // For ActionListener interface
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(quitBtn)) { // quit button
             dispose();
         } else if (e.getSource().equals(startBtn)) { // start button
             nextScreen();
+        } else if (e.getSource().equals(instructionsBtn) || e.getSource().equals(instructionsITEM)) { // instructions button
+            showInstructions();
         } else if (e.getSource().equals(newGameITEM) || e.getSource().equals(playAgainBtn)) {
             reset();
         } else {
