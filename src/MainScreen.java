@@ -67,6 +67,7 @@ public class MainScreen extends JFrame implements ActionListener {
         introMUSIC.start();
 
         gameMUSIC = new Sound("src/sound/game_sound.wav");
+        finalMUSIC = new Sound("src/sound/final_victory.wav");
 
         //Menus
         menuBar.add(GameMENU);
@@ -263,7 +264,11 @@ public class MainScreen extends JFrame implements ActionListener {
     // For ActionListener interface
     public void actionPerformed(ActionEvent e) { //most important method of the game
         if (e.getSource().equals(quitBtn)) { // quit button
-            dispose();
+            {
+                dispose();
+                gameMUSIC.stop();
+                finalMUSIC.stop();
+            }
         } else if (e.getSource().equals(startBtn)) { // start button
             nextScreen();
             introMUSIC.stop();
@@ -302,7 +307,6 @@ public class MainScreen extends JFrame implements ActionListener {
 
                         if(moneyTree.getScore() == 1000000) //if user wins
                         {
-                            finalMUSIC = new Sound("src/sound/intro.wav");
                             finalMUSIC.start();
 
                             displayEndScreen(false);
