@@ -27,11 +27,11 @@
         <answer>Iron</answer>
     </question>
     <question subject="science" difficulty="5">
-    <prompt>Which scientist has won two Nobel prizes?</prompt>
-         <answer correct="true">Marie Curie</answer>
-         <answer>Albert Einstein</answer>
-         <answer>Niels Bohr</answer>
-         <answer>Max Planck</answer>
+        <prompt>Which scientist has won two Nobel prizes?</prompt>
+        <answer correct="true">Marie Curie</answer>
+        <answer>Albert Einstein</answer>
+        <answer>Niels Bohr</answer>
+        <answer>Max Planck</answer>
     </question>
     <question subject="science" difficulty="8">
         <prompt>The noble gases occupy 1% of the atmosphere of which ____ is argon</prompt>
@@ -398,7 +398,7 @@
         <answer correct="true">Henry VIII</answer>
         <answer>Edward the Elder</answer>
         <answer>Edward V</answer>
-        <answer>Henry the Young King </answer>
+        <answer>Henry the Young King</answer>
     </question>
     <question subject="history" difficulty="3">
         <prompt>The First World War began in which year?</prompt>
@@ -408,11 +408,11 @@
         <answer>1938</answer>
     </question>
     <question subject="history" difficulty="4">
-    <prompt>Which city was John F. Kennedy assassinated in?</prompt>
-    <answer correct="true">Dallas</answer>
-    <answer>Austin</answer>
-    <answer>Lincoln</answer>
-    <answer>Boston</answer>
+        <prompt>Which city was John F. Kennedy assassinated in?</prompt>
+        <answer correct="true">Dallas</answer>
+        <answer>Austin</answer>
+        <answer>Lincoln</answer>
+        <answer>Boston</answer>
     </question>
     <question subject="history" difficulty="2">
         <prompt>Who fought in the War of 1812?</prompt>
@@ -464,7 +464,7 @@
         <answer>Millard Fillmore</answer>
     </question>
     <question subject="history" difficulty="3">
-    <prompt>Who was the first US President to live in the White House?</prompt>
+        <prompt>Who was the first US President to live in the White House?</prompt>
         <answer correct="true">John Adams</answer>
         <answer>George Washington</answer>
         <answer>Andrew Jackson</answer>

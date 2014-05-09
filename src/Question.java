@@ -2,9 +2,11 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import java.io.FileInputStream;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 public class Question {
     protected String prompt;
@@ -86,9 +88,12 @@ public class Question {
 
     /**
      * accessor for difficulty
+     *
      * @return difficulty [1,10]
      */
-    public int getDifficulty() { return difficulty; }
+    public int getDifficulty() {
+        return difficulty;
+    }
 
     /**
      * accessor for prompt

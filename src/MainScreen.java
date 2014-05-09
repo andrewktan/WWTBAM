@@ -1,24 +1,12 @@
-import org.omg.CORBA.BAD_INV_ORDER;
-
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowFocusListener;
-import java.io.InputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class MainScreen extends JFrame implements ActionListener {
     //Confirmation
@@ -118,9 +106,9 @@ public class MainScreen extends JFrame implements ActionListener {
         mainMenu.add(title, BorderLayout.WEST);
         mainMenu.setBackground(Color.WHITE);
 
-        startBtn.setPreferredSize(new Dimension(100,50));
-        instructionsBtn.setPreferredSize(new Dimension(125,50));
-        quitBtn.setPreferredSize(new Dimension(100,50));
+        startBtn.setPreferredSize(new Dimension(100, 50));
+        instructionsBtn.setPreferredSize(new Dimension(125, 50));
+        quitBtn.setPreferredSize(new Dimension(100, 50));
 
 
         // populate JPanel
@@ -144,7 +132,7 @@ public class MainScreen extends JFrame implements ActionListener {
         do {
             qInd = (int) (Math.random() * questions.size()); // generate random index
             // create min&max difficulties based on question number
-            ceil =  (int) ((float) moneyTree.getIndex() * 10 / 15) + 4;
+            ceil = (int) ((float) moneyTree.getIndex() * 10 / 15) + 4;
             floor = ceil - 5;
             // if difficulty within range
             if (questions.get(qInd).getDifficulty() >= floor && questions.get(qInd).getDifficulty() <= ceil)
@@ -190,10 +178,10 @@ public class MainScreen extends JFrame implements ActionListener {
 
         Insets insets = this.getInsets();
 
-        message.setBounds(175 + insets.left, 1 + insets.top,600,50);
-        money.setBounds(220 + insets.left, 190 + insets.top,500,200);
-        playAgainBtn.setBounds(265 + insets.left, 450 + insets.top,100,50);
-        quitBtn.setBounds(550 + insets.left, 450 + insets.top,100,50);
+        message.setBounds(175 + insets.left, 1 + insets.top, 600, 50);
+        money.setBounds(220 + insets.left, 190 + insets.top, 500, 200);
+        playAgainBtn.setBounds(265 + insets.left, 450 + insets.top, 100, 50);
+        quitBtn.setBounds(550 + insets.left, 450 + insets.top, 100, 50);
 
         // add ActionListeners
         playAgainBtn.addActionListener(this);
@@ -219,7 +207,7 @@ public class MainScreen extends JFrame implements ActionListener {
         audiencePollUsed2 = false;
     }
 
-    public void lifeLinePressed () //which life line has been used
+    public void lifeLinePressed() //which life line has been used
     {
         //Checks which lifeline has been used and calls the specfic method and repaints the screen to display it being used
         if (currentGameplay.fiftyFiftyOnePressed()) {
@@ -297,8 +285,8 @@ public class MainScreen extends JFrame implements ActionListener {
 
                     //decision pop up window
                     decision = JOptionPane.showOptionDialog(this, "CONGRATULATIONS! YOU HAVE WON $" +
-                                    moneyTree.getScore() + "\n\n   Walk away with $" +
-                                    moneyTree.getScore() + " or continue?", "CONGRATULATIONS!",
+                            moneyTree.getScore() + "\n\n   Walk away with $" +
+                            moneyTree.getScore() + " or continue?", "CONGRATULATIONS!",
                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[1]);
 
                     if (decision == JOptionPane.YES_OPTION) { // if continue with game
@@ -307,14 +295,14 @@ public class MainScreen extends JFrame implements ActionListener {
                         nextScreen(); // display next question
 
 
-                        if(moneyTree.getScore() == 1000000) //if user wins
+                        if (moneyTree.getScore() == 1000000) //if user wins
                         {
                             finalMUSIC.start();
 
                             displayEndScreen(false);
                         }
 
-                    } else{
+                    } else {
                         displayEndScreen(false);
                     }
 

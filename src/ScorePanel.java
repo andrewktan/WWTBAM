@@ -2,7 +2,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOError;
 import java.io.IOException;
 
 public class ScorePanel extends JPanel {
@@ -35,7 +34,7 @@ public class ScorePanel extends JPanel {
         }
     }
 
-    public void paintComponent (Graphics g) { //Loads background
+    public void paintComponent(Graphics g) { //Loads background
         super.paintComponent(g);
         g.drawImage(bgimg, 0, 0, null); // draw background image
         g.setColor(new Color(255, 255, 255, 100));

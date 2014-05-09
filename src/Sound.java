@@ -1,14 +1,12 @@
-import java.io.*;
-import java.net.URL;
-
 import javax.sound.sampled.*;
+import java.io.IOException;
+import java.net.URL;
 
 public class Sound {
     Clip clip;
     AudioInputStream audio;
 
-    public Sound(String name)
-    {
+    public Sound(String name) {
         try {
             URL url = getClass().getClassLoader().getResource(name);
             audio = AudioSystem.getAudioInputStream(url); // load file
@@ -19,26 +17,24 @@ public class Sound {
         } catch (LineUnavailableException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-        catch (UnsupportedAudioFileException e) {
+        } catch (UnsupportedAudioFileException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }  catch (IOException e) {
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public void start()
-    {
+    public void start() {
         clip.start(); //start the sound
     }
 
     public void stop() {
         clip.stop(); //stops the sound
     }
-    public void loop(int x)
-    {
+
+    public void loop(int x) {
         clip.loop(x);
     }
 
