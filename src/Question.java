@@ -3,6 +3,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.FileInputStream;
+import java.net.URL;
 import java.util.*;
 
 public class Question {
@@ -38,14 +39,14 @@ public class Question {
      * @param str
      * @return ArrayList of Question objects
      */
-    public static ArrayList<Question> readQuestionsFromFile(String str) {
+    public static ArrayList<Question> readQuestionsFromFile(URL url) {
         // create ArrayList of questions
         ArrayList<Question> ret = new ArrayList<Question>();
 
         try {
             // create Document object
             SAXReader reader = new SAXReader();
-            Document document = reader.read(new FileInputStream("data/" + str));
+            Document document = reader.read(url);
 
             // read data
             Element root = document.getRootElement();

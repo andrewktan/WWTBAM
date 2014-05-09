@@ -1,4 +1,5 @@
 import java.io.*;
+import java.net.URL;
 
 import javax.sound.sampled.*;
 
@@ -9,7 +10,8 @@ public class Sound {
     public Sound(String name)
     {
         try {
-            audio = AudioSystem.getAudioInputStream(new File(name)); // load file
+            URL url = getClass().getClassLoader().getResource(name);
+            audio = AudioSystem.getAudioInputStream(url); // load file
             AudioFormat format = audio.getFormat(); // get format
             DataLine.Info info = new DataLine.Info(Clip.class, format);
             clip = (Clip) AudioSystem.getLine(info);

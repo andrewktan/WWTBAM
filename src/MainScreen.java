@@ -63,11 +63,11 @@ public class MainScreen extends JFrame implements ActionListener {
     public MainScreen() {
 
         //Sound
-        introMUSIC = new Sound("src/sound/intro.wav");
+        introMUSIC = new Sound("sound/intro.wav");
         introMUSIC.start();
 
-        gameMUSIC = new Sound("src/sound/game_sound.wav");
-        finalMUSIC = new Sound("src/sound/final_victory.wav");
+        gameMUSIC = new Sound("sound/game_sound.wav");
+        finalMUSIC = new Sound("sound/final_victory.wav");
 
         //Menus
         menuBar.add(GameMENU);
@@ -78,7 +78,8 @@ public class MainScreen extends JFrame implements ActionListener {
         instructionsITEM.addActionListener(this);
         this.setJMenuBar(menuBar);
         // read from file
-        questions = Question.readQuestionsFromFile("questions.xml");
+        URL url = getClass().getClassLoader().getResource("data/questions.xml"); // create url object
+        questions = Question.readQuestionsFromFile(url);
 
         // SETUP GUI
         setTitle("Who Wants to Be a Millionaire?");
@@ -207,7 +208,8 @@ public class MainScreen extends JFrame implements ActionListener {
         moneyTree.resetScore(); // reset score
         mainMenu.add(quitBtn); // re-add button to mainMenu
         setContentPane(mainMenu); // return to main menu
-        questions = Question.readQuestionsFromFile("questions.xml"); // reload questions
+        URL url = getClass().getClassLoader().getResource("data/questions.xml"); // create url object
+        questions = Question.readQuestionsFromFile(url); // reload questions
         this.setSize(908, 675);
 
         //resets all lifelines
@@ -248,7 +250,7 @@ public class MainScreen extends JFrame implements ActionListener {
         try {
             // create JComponents
             JPanel p = new JPanel();
-            URL u = (new java.io.File("data/instructions.html")).toURI().toURL(); // get URL of instructions file
+            URL u = getClass().getClassLoader().getResource("data/instructions.html"); // get URL of instructions file
             JEditorPane ep = new JEditorPane(u); // read instructions from file
             ep.setSize(908, 600);
             p.add(ep);
@@ -287,7 +289,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                 if (currentGameplay.isCorrect()) { // if correct
 
-                    winMUSIC = new Sound("src/sound/win.wav");
+                    winMUSIC = new Sound("sound/win.wav");
                     winMUSIC.start();
 
                     moneyTree.incrementScore(); // increase score
@@ -318,7 +320,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                 } else { // if incorrect
 
-                    loseMUSIC = new Sound("src/sound/lose.wav");
+                    loseMUSIC = new Sound("sound/lose.wav");
                     loseMUSIC.start();
 
                     displayEndScreen(true);
