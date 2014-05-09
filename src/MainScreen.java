@@ -318,7 +318,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
                 } else { // if incorrect
 
-                    loseMUSIC = new Sound("/src/sound/lose.wav");
+                    loseMUSIC = new Sound("src/sound/lose.wav");
                     loseMUSIC.start();
 
                     displayEndScreen(true);

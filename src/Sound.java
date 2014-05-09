@@ -9,9 +9,11 @@ public class Sound {
     public Sound(String name)
     {
         try {
-            clip = AudioSystem.getClip();
-            audio = AudioSystem.getAudioInputStream(new File(name));
-            clip.open(audio);
+            audio = AudioSystem.getAudioInputStream(new File(name)); // load file
+            AudioFormat format = audio.getFormat(); // get format
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            clip = (Clip) AudioSystem.getLine(info);
+            clip.open(audio); // open audio file
         } catch (LineUnavailableException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
